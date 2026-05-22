@@ -1,0 +1,172 @@
+{
+  "models": [
+    {
+      "name": "Qwen2.5 7B",
+      "provider": "Alibaba",
+      "tier": "local",
+      "paramSize": "7B",
+      "minHardware": "16GB RAM, M-series Mac or modern CPU",
+      "strengths": ["Instruction following", "Multilingual", "Code generation"],
+      "bestFor": ["Summarisation", "Classification", "Template filling", "Q&A on provided text"],
+      "managedAlternative": "Together AI, Hugging Face Inference Endpoints",
+      "link": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Qwen2.5 14B",
+      "provider": "Alibaba",
+      "tier": "local",
+      "paramSize": "14B",
+      "minHardware": "32GB RAM or 16GB VRAM GPU",
+      "strengths": ["Complex reasoning", "Long context", "Code generation"],
+      "bestFor": ["Code review", "Research synthesis", "First-draft generation", "Multi-step tasks"],
+      "managedAlternative": "Together AI, Replicate",
+      "link": "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Gemma 3 4B",
+      "provider": "Google",
+      "tier": "local",
+      "paramSize": "4B",
+      "minHardware": "8GB RAM, no GPU required",
+      "strengths": ["Fast inference", "Low resource usage", "Instruction following"],
+      "bestFor": ["Sentiment analysis", "Classification", "Simple Q&A", "Template filling"],
+      "managedAlternative": "Google AI Studio, Hugging Face Inference Endpoints",
+      "link": "https://huggingface.co/google/gemma-3-4b-it",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Gemma 3 12B",
+      "provider": "Google",
+      "tier": "local",
+      "paramSize": "12B",
+      "minHardware": "24GB RAM or 12GB VRAM GPU",
+      "strengths": ["Balanced capability", "Reasoning", "Instruction following"],
+      "bestFor": ["Copy editing", "Code explanation", "Meeting notes", "First-draft generation"],
+      "managedAlternative": "Google AI Studio, Replicate",
+      "link": "https://huggingface.co/google/gemma-3-12b-it",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Llama 3.2 3B",
+      "provider": "Meta",
+      "tier": "local",
+      "paramSize": "3B",
+      "minHardware": "8GB RAM, no GPU required",
+      "strengths": ["Lightweight", "Fast inference", "General purpose"],
+      "bestFor": ["Simple classification", "Sentiment analysis", "Basic Q&A", "Template filling"],
+      "managedAlternative": "Together AI, Replicate, Hugging Face Inference Endpoints",
+      "link": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Llama 3.2 11B",
+      "provider": "Meta",
+      "tier": "local",
+      "paramSize": "11B",
+      "minHardware": "24GB RAM or 12GB VRAM GPU",
+      "strengths": ["Vision capability", "Reasoning", "Instruction following"],
+      "bestFor": ["Code explanation", "Summarisation", "Q&A", "First-draft generation"],
+      "managedAlternative": "Together AI, Replicate",
+      "link": "https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Phi-4 Mini",
+      "provider": "Microsoft",
+      "tier": "local",
+      "paramSize": "3.8B",
+      "minHardware": "8GB RAM, no GPU required",
+      "strengths": ["Reasoning", "Math", "Code generation", "Efficient"],
+      "bestFor": ["Code explanation", "Test case generation", "Simple debugging", "Classification"],
+      "managedAlternative": "Azure AI, Hugging Face Inference Endpoints",
+      "link": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "tier": "frontier",
+      "paramSize": "large",
+      "minHardware": "API access only",
+      "strengths": ["Reasoning", "Code generation", "Long context", "Instruction following"],
+      "bestFor": ["Complex debugging", "Autonomous coding", "Research synthesis", "Long-form documents"],
+      "managedAlternative": null,
+      "link": "https://www.anthropic.com/claude",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Claude Opus 4.5",
+      "provider": "Anthropic",
+      "tier": "frontier",
+      "paramSize": "large",
+      "minHardware": "API access only",
+      "strengths": ["Advanced reasoning", "Complex analysis", "Nuanced writing", "Multi-step tasks"],
+      "bestFor": ["Risk assessment", "Multi-criteria decision analysis", "Complex debugging", "Research synthesis"],
+      "managedAlternative": null,
+      "link": "https://www.anthropic.com/claude",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "GPT-4o",
+      "provider": "OpenAI",
+      "tier": "frontier",
+      "paramSize": "large",
+      "minHardware": "API access only",
+      "strengths": ["Multimodal", "Reasoning", "Code generation", "Fast inference"],
+      "bestFor": ["Autonomous coding", "Complex debugging", "Long-form documents", "Multi-criteria analysis"],
+      "managedAlternative": null,
+      "link": "https://openai.com/gpt-4",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Gemini 1.5 Pro",
+      "provider": "Google",
+      "tier": "frontier",
+      "paramSize": "large",
+      "minHardware": "API access only",
+      "strengths": ["Very long context", "Multimodal", "Reasoning", "Code generation"],
+      "bestFor": ["Research synthesis", "Long-form documents", "Code review", "Multi-step analysis"],
+      "managedAlternative": null,
+      "link": "https://deepmind.google/technologies/gemini/",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Qwen2.5 14B + RAG",
+      "provider": "Alibaba + ChromaDB/Qdrant",
+      "tier": "hybrid",
+      "paramSize": "14B",
+      "minHardware": "32GB RAM or 16GB VRAM GPU + vector DB",
+      "strengths": ["Domain knowledge", "Grounded responses", "Reduced hallucination"],
+      "bestFor": ["Q&A on large document sets", "Research synthesis", "Domain-specific tasks"],
+      "managedAlternative": "Together AI + Pinecone, LangChain hosted",
+      "link": "https://docs.trychroma.com/",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Ollama + LangGraph",
+      "provider": "Ollama + LangChain",
+      "tier": "hybrid",
+      "paramSize": "varies",
+      "minHardware": "16GB RAM minimum, GPU recommended",
+      "strengths": ["Agent orchestration", "Multi-step workflows", "Tool use"],
+      "bestFor": ["Autonomous coding agent", "Multi-step tasks", "Complex workflows"],
+      "managedAlternative": "LangSmith hosted, AWS Bedrock Agents",
+      "link": "https://langchain-ai.github.io/langgraph/",
+      "lastVerified": "2026-05-20"
+    },
+    {
+      "name": "Gemma 3 12B Fine-tuned",
+      "provider": "Google (base) + custom",
+      "tier": "hybrid",
+      "paramSize": "12B",
+      "minHardware": "24GB RAM or 12GB VRAM GPU",
+      "strengths": ["Task-specific accuracy", "Consistent output format", "Domain adaptation"],
+      "bestFor": ["Repeated task patterns", "Classification with custom labels", "Domain-specific generation"],
+      "managedAlternative": "Modal, Replicate fine-tuning",
+      "link": "https://huggingface.co/google/gemma-3-12b-it",
+      "lastVerified": "2026-05-20"
+    }
+  ]
+}
