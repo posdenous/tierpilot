@@ -204,7 +204,7 @@ function attachEventListeners() {
   if (shareBtn) {
     shareBtn.addEventListener('click', async () => {
       const { copyVerdictToClipboard } = await import('./utils/share.js');
-      copyVerdictToClipboard(state.verdict, state.models, shareBtn);
+      copyVerdictToClipboard(state.verdict, state.answers, shareBtn);
     });
   }
 
@@ -233,17 +233,55 @@ function attachEventListeners() {
 }
 
 /**
+ * Checks for shared URL params and loads the result if valid
+ * @returns {boolean} True if loaded from URL
+ */
+async function loadFromSharedURL() {
+  const { decodeAnswersFromURL } = await import('./utils/share.js');
+  const sharedAnswers = decodeAnswersFromURL();
+  
+  if (!sharedAnswers || !sharedAnswers.task) return false;
+  
+  // Check if all required answers are present
+  const requiredKeys = [
+    'task', 'dataSensitivity', 'outputStakes', 'volumeFrequency',
+    'hardware', 'toolingComfort', 'costSensitivity', 'structuredOutput'
+  ];
+  
+  const hasAllAnswers = requiredKeys.every(key => sharedAnswers[key] !== null);
+  
+  if (!hasAllAnswers) return false;
+  
+  // Load the shared answers and calculate verdict
+  state.answers = sharedAnswers;
+  
+  const { calculateVerdict } = await import('./engine/decision.js');
+  state.verdict = calculateVerdict(state.answers);
+  state.currentStage = 3;
+  
+  // Clear URL params without reload
+  window.history.replaceState({}, '', window.location.pathname);
+  
+  return true;
+}
+
+/**
  * Initializes the application
  */
 export async function initApp() {
   // Fetch models in background
   await fetchModels();
   
-  // Determine starting stage
-  if (hasSeenExplainer()) {
-    state.currentStage = 1;
-  } else {
-    state.currentStage = 0;
+  // Check for shared URL first
+  const loadedFromURL = await loadFromSharedURL();
+  
+  if (!loadedFromURL) {
+    // Determine starting stage
+    if (hasSeenExplainer()) {
+      state.currentStage = 1;
+    } else {
+      state.currentStage = 0;
+    }
   }
   
   render();
