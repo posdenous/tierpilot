@@ -271,6 +271,27 @@ async function loadFromSharedURL() {
 }
 
 /**
+ * Resets the app to the task selection screen
+ */
+export function resetApp() {
+  state.currentStage = 1;
+  state.currentWizardStep = 0;
+  state.answers = {
+    task: null,
+    dataSensitivity: null,
+    outputStakes: null,
+    volumeFrequency: null,
+    hardware: null,
+    toolingComfort: null,
+    costSensitivity: null,
+    structuredOutput: null
+  };
+  state.verdict = null;
+  clearWizardState();
+  render();
+}
+
+/**
  * Initializes the application
  */
 export async function initApp() {

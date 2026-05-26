@@ -5,7 +5,7 @@
  */
 
 import './styles/main.css';
-import { initApp } from './app.js';
+import { initApp, resetApp } from './app.js';
 import { initI18n, renderLanguageSwitcher, initLanguageSwitcher, t } from './utils/i18n.js';
 import { initTheme, renderThemeToggle, initThemeToggle } from './utils/theme.js';
 
@@ -71,4 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
   updateOnlineStatus();
   initApp();
+  
+  // Logo click - go back to start
+  const logoLink = document.getElementById('logo-link');
+  if (logoLink) {
+    logoLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetApp();
+    });
+  }
 });
