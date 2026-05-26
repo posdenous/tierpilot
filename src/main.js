@@ -19,11 +19,16 @@ function updateOnlineStatus() {
   }
 }
 
-// Update header tagline with current language
-function updateHeaderTagline() {
+// Update header tagline and footer with current language
+function updateStaticText() {
   const tagline = document.getElementById('header-tagline');
   if (tagline) {
     tagline.textContent = t('header.tagline');
+  }
+  
+  const footerText = document.getElementById('footer-text');
+  if (footerText) {
+    footerText.textContent = t('footer.whatIsThis');
   }
 }
 
@@ -34,7 +39,7 @@ function setupLanguageSwitcher() {
     container.innerHTML = renderLanguageSwitcher();
     initLanguageSwitcher(() => {
       // Re-render app when language changes
-      updateHeaderTagline();
+      updateStaticText();
       initApp();
     });
   }
@@ -50,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Setup language switcher
   setupLanguageSwitcher();
-  updateHeaderTagline();
+  updateStaticText();
   
   updateOnlineStatus();
   initApp();

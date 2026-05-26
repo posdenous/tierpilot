@@ -4,6 +4,8 @@
  * Shareable result card with verdict badge, reasoning, and model recommendations.
  */
 
+import { t, getLanguage } from '../utils/i18n.js';
+
 /**
  * Gets the most recent lastVerified date from models
  * @param {Array} models - Models array
@@ -21,7 +23,9 @@ function getLastUpdatedDate(models) {
   if (dates.length === 0) return 'Unknown';
   
   const date = new Date(dates[0]);
-  return date.toLocaleDateString('en-US', { 
+  const lang = getLanguage();
+  const localeMap = { en: 'en-US', de: 'de-DE', es: 'es-ES', fr: 'fr-FR', it: 'it-IT' };
+  return date.toLocaleDateString(localeMap[lang] || 'en-US', { 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
@@ -52,12 +56,12 @@ function renderModelCard(model) {
       
       ${model.managedAlternative ? `
         <div class="model-card-managed">
-          <span class="text-foreground-secondary">Managed:</span> ${model.managedAlternative}
+          <span class="text-foreground-secondary">${t('modelCard.managed')}</span> ${model.managedAlternative}
         </div>
       ` : ''}
       
       <a href="${model.link}" target="_blank" rel="noopener noreferrer" class="model-card-link">
-        View model →
+        ${t('modelCard.viewModel')}
       </a>
     </div>
   `;
@@ -68,19 +72,13 @@ function renderModelCard(model) {
  * @returns {string} HTML string for the fix hierarchy
  */
 function renderFixHierarchy() {
-  const fixes = [
-    'Structured prompting and state injection',
-    'Decompose into atomic single-shot steps',
-    'External memory or RAG layer',
-    'Human checkpoints between steps',
-    'Fine-tune on task pattern'
-  ];
+  const fixes = t('verdict.fixHierarchy.fixes');
 
   return `
     <div class="fix-hierarchy">
-      <div class="fix-hierarchy-title">If local falls short, try these fixes (ranked by effort):</div>
+      <div class="fix-hierarchy-title">${t('verdict.fixHierarchy.title')}</div>
       <ol class="fix-hierarchy-list">
-        ${fixes.map(fix => `<li class="fix-hierarchy-item">${fix}</li>`).join('')}
+        ${Array.isArray(fixes) ? fixes.map(fix => `<li class="fix-hierarchy-item">${fix}</li>`).join('') : ''}
       </ol>
     </div>
   `;
@@ -94,19 +92,20 @@ function renderFixHierarchy() {
  */
 function renderGovernanceGuidance(verdict, answers) {
   const items = [];
+  const govT = t('verdict.governance.items');
   
   // Data governance
   if (verdict === 'frontier') {
     items.push({
       icon: '🔒',
-      title: 'Data Processing Agreement',
-      detail: 'Ensure your API provider has a DPA in place. Review their data retention and training policies.'
+      title: govT.dpa?.title || 'Data Processing Agreement',
+      detail: govT.dpa?.detail || ''
     });
     if (answers.dataSensitivity === 'confidential') {
       items.push({
         icon: '⚠️',
-        title: 'Compliance Review Required',
-        detail: 'Confidential data + external API requires legal/compliance sign-off. Document the business justification.'
+        title: govT.complianceReview?.title || 'Compliance Review Required',
+        detail: govT.complianceReview?.detail || ''
       });
     }
   }
@@ -114,8 +113,8 @@ function renderGovernanceGuidance(verdict, answers) {
   if (verdict === 'local') {
     items.push({
       icon: '🏠',
-      title: 'Data Stays In-House',
-      detail: 'No external data transfer. Document your local deployment for audit purposes.'
+      title: govT.dataInHouse?.title || 'Data Stays In-House',
+      detail: govT.dataInHouse?.detail || ''
     });
   }
   
@@ -123,13 +122,13 @@ function renderGovernanceGuidance(verdict, answers) {
   if (answers.outputStakes === 'high') {
     items.push({
       icon: '👤',
-      title: 'Human-in-the-Loop Required',
-      detail: 'High-stakes output should have mandatory human review before action. Define who approves and document the process.'
+      title: govT.humanInLoop?.title || 'Human-in-the-Loop Required',
+      detail: govT.humanInLoop?.detail || ''
     });
     items.push({
       icon: '📝',
-      title: 'Audit Trail',
-      detail: 'Log inputs, outputs, and reviewer decisions. Retain for your compliance period.'
+      title: govT.auditTrail?.title || 'Audit Trail',
+      detail: govT.auditTrail?.detail || ''
     });
   }
   
@@ -137,8 +136,8 @@ function renderGovernanceGuidance(verdict, answers) {
   if (verdict === 'frontier' && answers.volumeFrequency === 'high-volume') {
     items.push({
       icon: '💰',
-      title: 'Budget Controls',
-      detail: 'Set up spend alerts and rate limits. High volume + API = costs can spike unexpectedly.'
+      title: govT.budgetControls?.title || 'Budget Controls',
+      detail: govT.budgetControls?.detail || ''
     });
   }
   
@@ -146,16 +145,16 @@ function renderGovernanceGuidance(verdict, answers) {
   if (verdict === 'frontier') {
     items.push({
       icon: '🔄',
-      title: 'Vendor Dependency',
-      detail: 'Document fallback options. API pricing, terms, and model availability can change.'
+      title: govT.vendorDependency?.title || 'Vendor Dependency',
+      detail: govT.vendorDependency?.detail || ''
     });
   }
   
   if (verdict === 'hybrid') {
     items.push({
       icon: '🔗',
-      title: 'Integration Governance',
-      detail: 'Document the data flow between local and external components. Ensure each hop is compliant.'
+      title: govT.integrationGovernance?.title || 'Integration Governance',
+      detail: govT.integrationGovernance?.detail || ''
     });
   }
   
@@ -163,13 +162,13 @@ function renderGovernanceGuidance(verdict, answers) {
   if (answers.task === 'chatbot-conversational') {
     items.push({
       icon: '💬',
-      title: 'User-Facing AI Disclosure',
-      detail: 'Users should know they\'re interacting with AI. Check regional requirements (EU AI Act, etc.).'
+      title: govT.aiDisclosure?.title || 'User-Facing AI Disclosure',
+      detail: govT.aiDisclosure?.detail || ''
     });
     items.push({
       icon: '🛡️',
-      title: 'Guardrails & Content Filtering',
-      detail: 'Implement input/output filtering to prevent harmful content, prompt injection, and off-topic responses.'
+      title: govT.guardrails?.title || 'Guardrails & Content Filtering',
+      detail: govT.guardrails?.detail || ''
     });
   }
   
@@ -177,22 +176,22 @@ function renderGovernanceGuidance(verdict, answers) {
   if (answers.task === 'data-extraction' && answers.dataSensitivity !== 'not-sensitive') {
     items.push({
       icon: '📋',
-      title: 'Extraction Accuracy Validation',
-      detail: 'Validate extracted data against source documents. Errors in structured data can propagate downstream.'
+      title: govT.extractionValidation?.title || 'Extraction Accuracy Validation',
+      detail: govT.extractionValidation?.detail || ''
     });
   }
 
   if (items.length === 0) {
     items.push({
       icon: '✓',
-      title: 'Low Governance Overhead',
-      detail: 'Your combination of low sensitivity and low stakes means minimal compliance requirements.'
+      title: govT.lowOverhead?.title || 'Low Governance Overhead',
+      detail: govT.lowOverhead?.detail || ''
     });
   }
 
   return `
     <div class="governance-section">
-      <h2 class="text-lg font-semibold mb-4">Governance Considerations</h2>
+      <h2 class="text-lg font-semibold mb-4">${t('verdict.governance.title')}</h2>
       <div class="governance-grid">
         ${items.map(item => `
           <div class="governance-item">
@@ -274,7 +273,7 @@ function renderNextSteps(verdict, answers) {
 
   return `
     <div class="next-steps">
-      <h2 class="text-lg font-semibold mb-4">Next Steps</h2>
+      <h2 class="text-lg font-semibold mb-4">${t('verdict.nextSteps.title')}</h2>
       <ol class="next-steps-list">
         ${steps.map((step, i) => `
           <li class="next-steps-item">
@@ -293,17 +292,13 @@ function renderNextSteps(verdict, answers) {
  * @returns {string} HTML string for the tooltip
  */
 function renderVerdictTooltip(verdict) {
-  const explanations = {
-    local: 'Run models on your own hardware. Free after setup, fully private, but limited by your compute.',
-    frontier: 'Use cloud APIs like Claude or GPT-4. Best capability, but costs per token and sends data externally.',
-    hybrid: 'Combine local models with external tools like RAG, agents, or fine-tuning for enhanced capability.',
-    either: 'Both local and frontier approaches would work well for this use case. Choose based on preference.'
-  };
+  const tooltips = t('verdict.tooltips');
+  const explanation = tooltips[verdict] || '';
 
   return `
     <span class="tooltip" tabindex="0" role="button" aria-label="What does ${verdict} mean?">
       ?
-      <span class="tooltip-content">${explanations[verdict]}</span>
+      <span class="tooltip-content">${explanation}</span>
     </span>
   `;
 }
@@ -318,7 +313,7 @@ function renderVerdictTooltip(verdict) {
  */
 export function renderVerdict(verdict, models, modelsError, answers) {
   if (!verdict) {
-    return `<div class="text-center py-12 text-muted">Calculating verdict...</div>`;
+    return `<div class="text-center py-12 text-muted">${t('verdict.calculating')}</div>`;
   }
 
   const verdictClass = `verdict-badge--${verdict.verdict}`;
@@ -378,23 +373,23 @@ export function renderVerdict(verdict, models, modelsError, answers) {
       <!-- Model recommendations -->
       ${modelsError ? `
         <div class="p-4 bg-background-elevated border border-border rounded-lg text-center">
-          <p class="text-muted">Model recommendations are temporarily unavailable.</p>
-          <p class="text-sm text-muted mt-1">The verdict above is still valid based on your inputs.</p>
+          <p class="text-muted">${t('verdict.modelsUnavailable')}</p>
+          <p class="text-sm text-muted mt-1">${t('verdict.modelsUnavailableHint')}</p>
         </div>
       ` : relevantModels.length > 0 ? `
         <div>
           <h2 class="text-lg font-semibold mb-2">
-            ${showManagedAlternatives ? 'Recommended Models & Managed Options' : 'Recommended Models'}
+            ${showManagedAlternatives ? t('verdict.recommendedModelsManaged') : t('verdict.recommendedModels')}
           </h2>
-          <p class="text-sm text-muted mb-4">Based on your hardware and preferences. Each card shows the model, provider, and managed hosting options if available.</p>
+          <p class="text-sm text-muted mb-4">${t('verdict.modelsDescription')}</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${relevantModels.map(m => renderModelCard(m)).join('')}
           </div>
         </div>
         ${additionalModels.length > 0 ? `
           <div class="mt-6">
-            <h3 class="text-md font-semibold mb-2 text-foreground-secondary">Need More Capability?</h3>
-            <p class="text-sm text-muted mb-4">These models require more resources than your current hardware, but offer stronger performance. Consider cloud deployment or hardware upgrade.</p>
+            <h3 class="text-md font-semibold mb-2 text-foreground-secondary">${t('verdict.needMoreCapability')}</h3>
+            <p class="text-sm text-muted mb-4">${t('verdict.needMoreCapabilityDescription')}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 opacity-75">
               ${additionalModels.map(m => renderModelCard(m)).join('')}
             </div>
@@ -413,16 +408,16 @@ export function renderVerdict(verdict, models, modelsError, answers) {
       
       <!-- Metadata -->
       <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border text-sm text-muted">
-        <span>Model registry updated: ${getLastUpdatedDate(models)}</span>
+        <span>${t('verdict.modelRegistry')} ${getLastUpdatedDate(models)}</span>
       </div>
       
       <!-- Actions -->
       <div class="flex flex-wrap gap-3 pt-4">
         <button id="share-btn" class="btn-primary">
-          Share result
+          ${t('verdict.shareResult')}
         </button>
         <button id="start-over-btn" class="btn-secondary">
-          Start over
+          ${t('verdict.startOver')}
         </button>
       </div>
     </div>
