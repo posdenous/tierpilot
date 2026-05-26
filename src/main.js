@@ -7,6 +7,7 @@
 import './styles/main.css';
 import { initApp } from './app.js';
 import { initI18n, renderLanguageSwitcher, initLanguageSwitcher, t } from './utils/i18n.js';
+import { initTheme, renderThemeToggle, initThemeToggle } from './utils/theme.js';
 
 // Offline detection
 function updateOnlineStatus() {
@@ -32,6 +33,15 @@ function updateStaticText() {
   }
 }
 
+// Initialize theme toggle in header
+function setupThemeToggle() {
+  const container = document.getElementById('theme-toggle-container');
+  if (container) {
+    container.innerHTML = renderThemeToggle();
+    initThemeToggle();
+  }
+}
+
 // Initialize language switcher in header
 function setupLanguageSwitcher() {
   const container = document.getElementById('language-switcher-container');
@@ -50,10 +60,12 @@ window.addEventListener('offline', updateOnlineStatus);
 
 // Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize i18n first
-  initI18n();
+  // Initialize theme first (prevents flash)
+  initTheme();
+  setupThemeToggle();
   
-  // Setup language switcher
+  // Initialize i18n
+  initI18n();
   setupLanguageSwitcher();
   updateStaticText();
   
