@@ -5,79 +5,56 @@
  * Each question has button-select options.
  */
 
-// Wizard questions configuration
-const WIZARD_QUESTIONS = [
+import { t } from '../utils/i18n.js';
+
+// Wizard questions - keys map to translations
+const WIZARD_QUESTION_KEYS = [
   {
     key: 'dataSensitivity',
-    title: 'How sensitive is your data?',
-    description: 'This affects whether sending data to external APIs is acceptable.',
-    options: [
-      { value: 'not-sensitive', label: 'Not sensitive', description: 'Generic content, public information' },
-      { value: 'internal', label: 'Internal only', description: 'Company data, not for external sharing' },
-      { value: 'confidential', label: 'Personal, regulated, or confidential', description: 'PII, HIPAA, financial, or legally protected' }
-    ]
+    optionValues: ['not-sensitive', 'internal', 'confidential']
   },
   {
     key: 'outputStakes',
-    title: 'What are the stakes if the output is wrong?',
-    description: 'Higher stakes may require more capable models or human oversight.',
-    options: [
-      { value: 'low', label: 'Easy to catch and fix', description: 'Mistakes are quickly noticed and corrected' },
-      { value: 'medium', label: 'Needs human review', description: 'Output should be verified before use' },
-      { value: 'high', label: 'Legal, financial, or reputational risk', description: 'Errors could have serious consequences' }
-    ]
+    optionValues: ['low', 'medium', 'high']
   },
   {
     key: 'volumeFrequency',
-    title: 'How often will you run this task?',
-    description: 'Volume affects whether API costs or local setup effort makes more sense.',
-    options: [
-      { value: 'occasional', label: 'Occasional or one-off', description: 'A few times, then done' },
-      { value: 'regular', label: 'Regular (weekly or monthly)', description: 'Ongoing but not constant' },
-      { value: 'high-volume', label: 'High volume (daily or at scale)', description: 'Frequent or batch processing' }
-    ]
+    optionValues: ['occasional', 'regular', 'high-volume']
   },
   {
     key: 'hardware',
-    title: 'What hardware do you have available?',
-    description: 'Local models need sufficient RAM and ideally a GPU.',
-    options: [
-      { value: 'laptop-basic', label: 'Laptop, no GPU, under 16GB RAM', description: 'Basic consumer hardware' },
-      { value: 'laptop-gpu', label: 'GPU laptop or M-series Mac', description: 'Apple Silicon or discrete GPU' },
-      { value: 'workstation', label: 'Desktop workstation with dedicated GPU', description: 'Gaming PC or workstation with 12GB+ VRAM' },
-      { value: 'cloud', label: 'Cloud VM or server', description: 'AWS, GCP, Azure, or dedicated server' }
-    ]
+    optionValues: ['laptop-basic', 'laptop-gpu', 'workstation', 'cloud']
   },
   {
     key: 'toolingComfort',
-    title: 'How comfortable are you with local setup?',
-    description: 'This determines whether we recommend self-hosted or managed options.',
-    options: [
-      { value: 'cli', label: 'Comfortable with CLI and local setup', description: 'Can install Ollama, run terminal commands' },
-      { value: 'gui', label: 'Prefer GUI tools (e.g. LM Studio)', description: 'Want a visual interface, minimal terminal' },
-      { value: 'managed', label: 'Need managed hosting, no local setup', description: 'Prefer cloud APIs or hosted inference' }
-    ]
+    optionValues: ['cli', 'gui', 'managed']
   },
   {
     key: 'costSensitivity',
-    title: 'How important is cost?',
-    description: 'Local models are free after setup; APIs charge per token.',
-    options: [
-      { value: 'high', label: 'Cost is a real constraint', description: 'Budget is limited, prefer free options' },
-      { value: 'medium', label: 'Somewhat a factor', description: 'Will pay for value, but mindful of spend' },
-      { value: 'low', label: 'Not a factor', description: 'Willing to pay for best results' }
-    ]
+    optionValues: ['not-important', 'moderate', 'critical']
   },
   {
     key: 'structuredOutput',
-    title: 'Do you need structured output?',
-    description: 'JSON or schema-compliant output is harder for smaller models.',
-    options: [
-      { value: 'yes', label: 'Yes, needs reliable JSON or schema output', description: 'Output must parse correctly every time' },
-      { value: 'no', label: 'No, free-form output is fine', description: 'Natural language or flexible format' }
-    ]
+    optionValues: ['no', 'nice-to-have', 'required']
   }
 ];
+
+// Build questions with translations
+function getWizardQuestions() {
+  return WIZARD_QUESTION_KEYS.map(q => {
+    const questionT = t(`wizard.questions.${q.key}`);
+    return {
+      key: q.key,
+      title: questionT?.title || q.key,
+      options: q.optionValues.map(val => ({
+        value: val,
+        label: questionT?.options?.[val] || val
+      }))
+    };
+  });
+}
+
+const WIZARD_QUESTIONS = WIZARD_QUESTION_KEYS;
 
 /**
  * Renders a single wizard step
@@ -87,7 +64,8 @@ const WIZARD_QUESTIONS = [
  * @returns {string} HTML string for the wizard step
  */
 export function renderWizard(stepIndex, answers, progress) {
-  const question = WIZARD_QUESTIONS[stepIndex];
+  const questions = getWizardQuestions();
+  const question = questions[stepIndex];
   if (!question) return '';
 
   const currentAnswer = answers[question.key];
@@ -98,10 +76,9 @@ export function renderWizard(stepIndex, answers, progress) {
       data-question="${question.key}"
       data-option="${option.value}"
       aria-selected="${currentAnswer === option.value}"
-      aria-label="${option.label}: ${option.description}"
+      aria-label="${option.label}"
     >
       <div class="font-medium">${option.label}</div>
-      <div class="text-sm text-muted mt-1">${option.description}</div>
     </button>
   `).join('');
 
@@ -116,11 +93,10 @@ export function renderWizard(stepIndex, answers, progress) {
       
       <!-- Step indicator -->
       <div class="text-sm text-muted mb-4 mono">
-        Question ${stepIndex + 1} of ${WIZARD_QUESTIONS.length}
+        ${stepIndex + 1} / ${questions.length}
       </div>
       
-      <h1 id="wizard-question-title" class="text-2xl font-semibold mb-2">${question.title}</h1>
-      <p class="text-foreground-secondary mb-6">${question.description}</p>
+      <h1 id="wizard-question-title" class="text-2xl font-semibold mb-6">${question.title}</h1>
       
       <div class="space-y-3" role="listbox" aria-label="${question.title}">
         ${optionButtons}
@@ -131,14 +107,13 @@ export function renderWizard(stepIndex, answers, progress) {
         <button 
           id="back-btn" 
           class="btn-secondary"
-          aria-label="${isFirstStep ? 'Back to task selection' : 'Previous question'}"
+          aria-label="Back"
         >
           ← Back
         </button>
-        <span class="text-sm text-muted">Select an option to continue</span>
       </div>
     </div>
   `;
 }
 
-export { WIZARD_QUESTIONS };
+export { WIZARD_QUESTIONS, getWizardQuestions };

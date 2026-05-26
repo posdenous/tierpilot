@@ -1,11 +1,13 @@
 /**
  * TierPilot - Task Selector Component (Stage 1)
  * 
- * Button grid showing all 18 task categories.
+ * Button grid showing all 21 task categories.
  * Each button shows the task name and a short description.
  */
 
-// Task categories with descriptions and examples
+import { t } from '../utils/i18n.js';
+
+// Task categories - text pulled from translations
 // These map directly to complexity levels in the decision engine
 const TASK_CATEGORIES = [
   {
@@ -164,19 +166,27 @@ const TASK_CATEGORIES = [
  * @returns {string} HTML string for the task selector
  */
 export function renderTaskSelector(selectedTask, progress) {
-  const taskButtons = TASK_CATEGORIES.map(task => `
-    <button
-      class="task-button"
-      data-task="${task.id}"
-      data-complexity="${task.complexity}"
-      aria-selected="${selectedTask === task.id}"
-      aria-label="${task.name}: ${task.description}. ${task.example}"
-    >
-      <span class="task-button-title">${task.name}</span>
-      <span class="task-button-description">${task.description}</span>
-      <span class="task-button-example">${task.example}</span>
-    </button>
-  `).join('');
+  const taskButtons = TASK_CATEGORIES.map(task => {
+    // Get translated text, fallback to hardcoded if not found
+    const taskT = t(`tasks.${task.id}`);
+    const name = typeof taskT === 'object' ? taskT.name : task.name;
+    const description = typeof taskT === 'object' ? taskT.description : task.description;
+    const example = typeof taskT === 'object' ? taskT.example : task.example;
+    
+    return `
+      <button
+        class="task-button"
+        data-task="${task.id}"
+        data-complexity="${task.complexity}"
+        aria-selected="${selectedTask === task.id}"
+        aria-label="${name}: ${description}. ${example}"
+      >
+        <span class="task-button-title">${name}</span>
+        <span class="task-button-description">${description}</span>
+        <span class="task-button-example">${example}</span>
+      </button>
+    `;
+  }).join('');
 
   return `
     <div role="region" aria-labelledby="task-selector-title">
@@ -185,22 +195,22 @@ export function renderTaskSelector(selectedTask, progress) {
         <div class="progress-bar-fill" style="width: ${progress}%"></div>
       </div>
       
-      <h1 id="task-selector-title" class="text-2xl font-semibold mb-2">What are you trying to do?</h1>
-      <p class="text-foreground-secondary mb-4">Pick the task type that best matches your use case.</p>
+      <h1 id="task-selector-title" class="text-2xl font-semibold mb-2">${t('taskSelector.title')}</h1>
+      <p class="text-foreground-secondary mb-4">${t('taskSelector.subtitle')}</p>
       
       <!-- Complexity legend -->
       <div class="complexity-legend mb-4">
         <span class="complexity-legend-item">
           <span class="complexity-dot complexity-dot--simple"></span>
-          Simple — local-friendly
+          ${t('taskSelector.complexity.simple')}
         </span>
         <span class="complexity-legend-item">
           <span class="complexity-dot complexity-dot--moderate"></span>
-          Moderate
+          ${t('taskSelector.complexity.moderate')}
         </span>
         <span class="complexity-legend-item">
           <span class="complexity-dot complexity-dot--complex"></span>
-          Complex — may need frontier
+          ${t('taskSelector.complexity.complex')}
         </span>
       </div>
       
@@ -210,8 +220,8 @@ export function renderTaskSelector(selectedTask, progress) {
           type="text" 
           id="task-search" 
           class="task-search-input" 
-          placeholder="Type to filter tasks... e.g., code, summarise, translate"
-          aria-label="Filter tasks by keyword"
+          placeholder="${t('taskSelector.searchPlaceholder')}"
+          aria-label="${t('taskSelector.searchPlaceholder')}"
           autocomplete="off"
         />
       </div>
@@ -221,8 +231,8 @@ export function renderTaskSelector(selectedTask, progress) {
       </div>
       
       <div id="no-matches" class="hidden text-center py-8 text-muted">
-        <p>No matching tasks found.</p>
-        <p class="text-sm mt-2">Try a different keyword, or browse all tasks above.</p>
+        <p>${t('taskSelector.noMatches')}</p>
+        <p class="text-sm mt-2">${t('taskSelector.noMatchesHint')}</p>
       </div>
     </div>
   `;

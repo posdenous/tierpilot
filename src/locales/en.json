@@ -1,0 +1,327 @@
+{
+  "meta": {
+    "language": "English",
+    "code": "en"
+  },
+  "header": {
+    "tagline": "Local vs Frontier LLM Decision Tool"
+  },
+  "explainer": {
+    "title": "Choose the right LLM approach",
+    "subtitle": "Answer a few questions, get a recommendation in 2 minutes",
+    "localModels": "Local models",
+    "localDescription": "run on your hardware — no data leaves your environment, no per-token costs, but capability is limited by model size and your compute.",
+    "frontierApis": "Frontier APIs",
+    "frontierDescription": "like Claude and GPT-4 offer state-of-the-art reasoning, but data is processed externally and costs scale with usage.",
+    "rightChoice": "The right choice depends on:",
+    "rightChoiceDescription": "what you're building, who sees the data, what happens if output is wrong, and what your org allows.",
+    "governance": {
+      "dataResidency": "Data residency & compliance",
+      "risk": "Risk & accountability",
+      "cost": "Cost & vendor dependency"
+    },
+    "getStarted": "Get Started",
+    "duration": "Takes about 2 minutes. No account required."
+  },
+  "taskSelector": {
+    "title": "What are you trying to do?",
+    "subtitle": "Pick the task type that best matches your use case.",
+    "searchPlaceholder": "Type to filter tasks... e.g., code, summarise, translate",
+    "noMatches": "No matching tasks found.",
+    "noMatchesHint": "Try a different keyword, or browse all tasks above.",
+    "complexity": {
+      "simple": "Simple — local-friendly",
+      "moderate": "Moderate",
+      "complex": "Complex — may need frontier"
+    }
+  },
+  "tasks": {
+    "summarisation": {
+      "name": "Summarisation",
+      "description": "Condense articles, reports, or documents into key points",
+      "example": "e.g., TL;DR of a research paper, meeting recap"
+    },
+    "classification": {
+      "name": "Classification / Tagging",
+      "description": "Sort content into predefined categories or labels",
+      "example": "e.g., ticket routing, content moderation, lead scoring"
+    },
+    "copy-editing": {
+      "name": "Copy Editing / Rewriting",
+      "description": "Improve clarity, tone, grammar, or style",
+      "example": "e.g., make this more formal, fix grammar, simplify"
+    },
+    "translation": {
+      "name": "Translation",
+      "description": "Convert text between languages",
+      "example": "e.g., English to Spanish, localise UI strings"
+    },
+    "template-filling": {
+      "name": "Template / Form Filling",
+      "description": "Populate structured templates with extracted data",
+      "example": "e.g., fill invoice fields, extract entities to JSON"
+    },
+    "sentiment-analysis": {
+      "name": "Sentiment Analysis",
+      "description": "Detect emotional tone, opinion, or intent",
+      "example": "e.g., is this review positive?, customer mood detection"
+    },
+    "code-explanation": {
+      "name": "Code Explanation",
+      "description": "Explain what code does in plain language",
+      "example": "e.g., what does this function do?, add inline comments"
+    },
+    "qa-provided-text": {
+      "name": "Q&A on Provided Text",
+      "description": "Answer questions using context you supply",
+      "example": "e.g., ask questions about a PDF, search docs"
+    },
+    "first-draft": {
+      "name": "First-Draft Generation",
+      "description": "Create initial drafts that humans will refine",
+      "example": "e.g., blog post outline, email draft, proposal skeleton"
+    },
+    "test-generation": {
+      "name": "Test Case Generation",
+      "description": "Generate unit tests, edge cases, or test data",
+      "example": "e.g., write Jest tests for this function"
+    },
+    "meeting-notes": {
+      "name": "Meeting Notes to Actions",
+      "description": "Extract action items, decisions, and owners from notes",
+      "example": "e.g., parse transcript into task list with assignees"
+    },
+    "code-review": {
+      "name": "Code Review",
+      "description": "Review code for bugs, security issues, and style",
+      "example": "e.g., review this PR, find potential issues"
+    },
+    "risk-assessment": {
+      "name": "Risk Assessment",
+      "description": "Identify, evaluate, and prioritise potential risks",
+      "example": "e.g., security audit, compliance gap analysis"
+    },
+    "research-synthesis": {
+      "name": "Research Synthesis",
+      "description": "Combine multiple sources into coherent analysis",
+      "example": "e.g., literature review, competitive analysis, due diligence"
+    },
+    "autonomous-coding": {
+      "name": "Autonomous Coding Agent",
+      "description": "Multi-step code generation with file edits and tool use",
+      "example": "e.g., build this feature end-to-end, refactor module"
+    },
+    "complex-debugging": {
+      "name": "Complex Debugging",
+      "description": "Diagnose and fix non-obvious or multi-system bugs",
+      "example": "e.g., race condition, memory leak, integration failure"
+    },
+    "long-form-document": {
+      "name": "Long-Form Document",
+      "description": "Create lengthy documents requiring multiple revisions",
+      "example": "e.g., technical spec, whitepaper, documentation site"
+    },
+    "multi-criteria-decision": {
+      "name": "Multi-Criteria Decision Analysis",
+      "description": "Evaluate options across multiple weighted factors",
+      "example": "e.g., vendor selection, architecture trade-off analysis"
+    },
+    "chatbot-conversational": {
+      "name": "Chatbot / Conversational Agent",
+      "description": "Multi-turn dialogue with users, stateful conversations",
+      "example": "e.g., customer support bot, FAQ assistant, onboarding guide"
+    },
+    "data-extraction": {
+      "name": "Data Extraction / Parsing",
+      "description": "Pull structured data from unstructured documents",
+      "example": "e.g., extract fields from invoices, parse resumes, contract analysis"
+    },
+    "creative-marketing": {
+      "name": "Creative / Marketing Copy",
+      "description": "Generate engaging, brand-aligned creative content",
+      "example": "e.g., ad copy, product descriptions, social posts, taglines"
+    }
+  },
+  "wizard": {
+    "questions": {
+      "dataSensitivity": {
+        "title": "How sensitive is the data?",
+        "options": {
+          "not-sensitive": "Public or non-sensitive",
+          "internal": "Internal only",
+          "confidential": "Confidential / PII / regulated"
+        }
+      },
+      "outputStakes": {
+        "title": "What happens if the output is wrong?",
+        "options": {
+          "low": "Minor inconvenience",
+          "medium": "Needs human review anyway",
+          "high": "Significant impact / compliance risk"
+        }
+      },
+      "volumeFrequency": {
+        "title": "How often will this run?",
+        "options": {
+          "occasional": "Occasional / ad-hoc",
+          "regular": "Regular (daily/weekly)",
+          "high-volume": "High volume / continuous"
+        }
+      },
+      "hardware": {
+        "title": "What hardware do you have available?",
+        "options": {
+          "laptop-basic": "Laptop (no dedicated GPU)",
+          "laptop-gpu": "Laptop with GPU (8-16GB VRAM)",
+          "workstation": "Workstation (24GB+ VRAM)",
+          "cloud": "Cloud / on-demand compute"
+        }
+      },
+      "toolingComfort": {
+        "title": "How comfortable are you with local tooling?",
+        "options": {
+          "cli": "CLI / terminal is fine",
+          "gui": "Prefer GUI apps",
+          "managed": "Want managed solutions"
+        }
+      },
+      "costSensitivity": {
+        "title": "How important is cost?",
+        "options": {
+          "not-important": "Not a concern",
+          "moderate": "Somewhat important",
+          "critical": "Critical constraint"
+        }
+      },
+      "structuredOutput": {
+        "title": "Do you need structured output (JSON, etc.)?",
+        "options": {
+          "no": "No, free-form text is fine",
+          "nice-to-have": "Nice to have",
+          "required": "Yes, must be reliable"
+        }
+      }
+    }
+  },
+  "verdict": {
+    "calculating": "Calculating verdict...",
+    "modelsUnavailable": "Model recommendations are temporarily unavailable.",
+    "modelsUnavailableHint": "The verdict above is still valid based on your inputs.",
+    "recommendedModels": "Recommended Models",
+    "recommendedModelsManaged": "Recommended Models & Managed Options",
+    "modelsDescription": "Based on your hardware and preferences. Each card shows the model, provider, and managed hosting options if available.",
+    "needMoreCapability": "Need More Capability?",
+    "needMoreCapabilityDescription": "These models require more resources than your current hardware, but offer stronger performance. Consider cloud deployment or hardware upgrade.",
+    "fixHierarchy": {
+      "title": "If local falls short, try these fixes (ranked by effort):",
+      "fixes": [
+        "Structured prompting and state injection",
+        "Decompose into atomic single-shot steps",
+        "External memory or RAG layer",
+        "Human checkpoints between steps",
+        "Fine-tune on task pattern"
+      ]
+    },
+    "governance": {
+      "title": "Governance Considerations",
+      "items": {
+        "dpa": {
+          "title": "Data Processing Agreement",
+          "detail": "Ensure your API provider has a DPA in place. Review their data retention and training policies."
+        },
+        "complianceReview": {
+          "title": "Compliance Review Required",
+          "detail": "Confidential data + external API requires legal/compliance sign-off. Document the business justification."
+        },
+        "dataInHouse": {
+          "title": "Data Stays In-House",
+          "detail": "No external data transfer. Document your local deployment for audit purposes."
+        },
+        "humanInLoop": {
+          "title": "Human-in-the-Loop Required",
+          "detail": "High-stakes output should have mandatory human review before action. Define who approves and document the process."
+        },
+        "auditTrail": {
+          "title": "Audit Trail",
+          "detail": "Log inputs, outputs, and reviewer decisions. Retain for your compliance period."
+        },
+        "budgetControls": {
+          "title": "Budget Controls",
+          "detail": "Set up spend alerts and rate limits. High volume + API = costs can spike unexpectedly."
+        },
+        "vendorDependency": {
+          "title": "Vendor Dependency",
+          "detail": "Document fallback options. API pricing, terms, and model availability can change."
+        },
+        "integrationGovernance": {
+          "title": "Integration Governance",
+          "detail": "Document the data flow between local and external components. Ensure each hop is compliant."
+        },
+        "aiDisclosure": {
+          "title": "User-Facing AI Disclosure",
+          "detail": "Users should know they're interacting with AI. Check regional requirements (EU AI Act, etc.)."
+        },
+        "guardrails": {
+          "title": "Guardrails & Content Filtering",
+          "detail": "Implement input/output filtering to prevent harmful content, prompt injection, and off-topic responses."
+        },
+        "extractionValidation": {
+          "title": "Extraction Accuracy Validation",
+          "detail": "Validate extracted data against source documents. Errors in structured data can propagate downstream."
+        },
+        "lowOverhead": {
+          "title": "Low Governance Overhead",
+          "detail": "Your combination of low sensitivity and low stakes means minimal compliance requirements."
+        }
+      }
+    },
+    "nextSteps": {
+      "title": "Next Steps",
+      "steps": {
+        "chooseModel": "Choose a model from recommendations above",
+        "installOllama": "Install Ollama or llama.cpp on your target machine",
+        "downloadLMStudio": "Download LM Studio or GPT4All for a visual interface",
+        "setupManaged": "Set up managed inference via Together AI or Replicate",
+        "runPilot": "Run a pilot with representative test cases",
+        "documentDeployment": "Document the deployment for your team",
+        "selectProvider": "Select an API provider from recommendations",
+        "reviewTerms": "Review provider's terms of service and DPA",
+        "getApproval": "Get compliance/legal approval for data processing",
+        "setupApiKeys": "Set up API keys with appropriate access controls",
+        "implementRateLimiting": "Implement rate limiting and cost monitoring",
+        "designArchitecture": "Design the architecture: which components are local vs external",
+        "documentDataFlow": "Document data flow and where sensitive data is processed",
+        "setupLocalFirst": "Set up local model first, then add orchestration layer",
+        "testPipeline": "Test the full pipeline with representative data",
+        "tryLocalFirst": "Try local first — lower commitment, easier to switch later",
+        "upgradeIfNeeded": "If local doesn't meet quality bar, upgrade to frontier API",
+        "documentRationale": "Document your decision rationale for future reference",
+        "defineHumanReview": "Define human review workflow before production use",
+        "implementStateManagement": "Implement conversation state management and context window handling",
+        "addContentFiltering": "Add content filtering and guardrails before user-facing deployment",
+        "createValidationRules": "Create validation rules for extracted fields",
+        "buildSampleSet": "Build a sample set to measure extraction accuracy before scaling",
+        "defineBrandVoice": "Define brand voice guidelines and review criteria"
+      }
+    },
+    "modelRegistry": "Model registry updated:",
+    "shareResult": "Share result",
+    "startOver": "Start over",
+    "tooltips": {
+      "local": "Run models on your own hardware. Free after setup, fully private, but limited by your compute.",
+      "frontier": "Use cloud APIs like Claude or GPT-4. Best capability, but costs per token and sends data externally.",
+      "hybrid": "Combine local models with external tools like RAG, agents, or fine-tuning for enhanced capability.",
+      "either": "Both local and frontier approaches would work well for this use case. Choose based on preference."
+    }
+  },
+  "modelCard": {
+    "managed": "Managed:",
+    "viewModel": "View model →"
+  },
+  "footer": {
+    "whatIsThis": "What is this?"
+  },
+  "offline": {
+    "banner": "You're offline. Some features may be unavailable."
+  }
+}

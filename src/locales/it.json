@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "language": "Italiano",
+    "code": "it"
+  },
+  "header": {
+    "tagline": "Strumento decisionale: LLM Locale vs Frontier"
+  },
+  "explainer": {
+    "title": "Scegli l'approccio LLM giusto",
+    "subtitle": "Rispondi a qualche domanda e ottieni una raccomandazione in 2 minuti",
+    "localModels": "Modelli locali",
+    "localDescription": "vengono eseguiti sul tuo hardware — nessun dato lascia il tuo ambiente, nessun costo per token, ma la capacità è limitata dalla dimensione del modello e dalla tua potenza di calcolo.",
+    "frontierApis": "API Frontier",
+    "frontierDescription": "come Claude e GPT-4 offrono ragionamento all'avanguardia, ma i dati vengono elaborati esternamente e i costi scalano con l'utilizzo.",
+    "rightChoice": "La scelta giusta dipende da:",
+    "rightChoiceDescription": "cosa stai costruendo, chi vede i dati, cosa succede se l'output è sbagliato e cosa permette la tua organizzazione.",
+    "governance": {
+      "dataResidency": "Residenza dati e conformità",
+      "risk": "Rischio e responsabilità",
+      "cost": "Costo e dipendenza dal fornitore"
+    },
+    "getStarted": "Inizia",
+    "duration": "Richiede circa 2 minuti. Nessun account richiesto."
+  },
+  "taskSelector": {
+    "title": "Cosa stai cercando di fare?",
+    "subtitle": "Seleziona il tipo di attività che meglio corrisponde al tuo caso d'uso.",
+    "searchPlaceholder": "Digita per filtrare... es., codice, riassunto, traduzione",
+    "noMatches": "Nessuna attività corrispondente trovata.",
+    "noMatchesHint": "Prova una parola chiave diversa o sfoglia tutte le attività sopra.",
+    "complexity": {
+      "simple": "Semplice — adatto al locale",
+      "moderate": "Moderato",
+      "complex": "Complesso — potrebbe richiedere frontier"
+    }
+  },
+  "tasks": {
+    "summarisation": {
+      "name": "Riassunto",
+      "description": "Condensare articoli, report o documenti in punti chiave",
+      "example": "es., TL;DR di un paper di ricerca, recap di riunione"
+    },
+    "classification": {
+      "name": "Classificazione / Tagging",
+      "description": "Ordinare contenuti in categorie predefinite",
+      "example": "es., routing ticket, moderazione contenuti, lead scoring"
+    },
+    "copy-editing": {
+      "name": "Editing / Riscrittura",
+      "description": "Migliorare chiarezza, tono, grammatica o stile",
+      "example": "es., rendere più formale, correggere grammatica, semplificare"
+    },
+    "translation": {
+      "name": "Traduzione",
+      "description": "Convertire testo tra lingue",
+      "example": "es., inglese verso italiano, localizzare stringhe UI"
+    },
+    "template-filling": {
+      "name": "Compilazione modelli / moduli",
+      "description": "Popolare modelli strutturati con dati estratti",
+      "example": "es., compilare campi fattura, estrarre entità in JSON"
+    },
+    "sentiment-analysis": {
+      "name": "Analisi del sentiment",
+      "description": "Rilevare tono emotivo, opinione o intento",
+      "example": "es., questa recensione è positiva?, rilevamento umore cliente"
+    },
+    "code-explanation": {
+      "name": "Spiegazione codice",
+      "description": "Spiegare cosa fa il codice in linguaggio semplice",
+      "example": "es., cosa fa questa funzione?, aggiungere commenti inline"
+    },
+    "qa-provided-text": {
+      "name": "Q&A su testo fornito",
+      "description": "Rispondere a domande usando il contesto che fornisci",
+      "example": "es., fare domande su un PDF, cercare nei docs"
+    },
+    "first-draft": {
+      "name": "Generazione prima bozza",
+      "description": "Creare bozze iniziali che gli umani raffineranno",
+      "example": "es., schema post blog, bozza email, scheletro proposta"
+    },
+    "test-generation": {
+      "name": "Generazione casi di test",
+      "description": "Generare test unitari, casi limite o dati di test",
+      "example": "es., scrivere test Jest per questa funzione"
+    },
+    "meeting-notes": {
+      "name": "Note riunione in azioni",
+      "description": "Estrarre elementi d'azione, decisioni e responsabili",
+      "example": "es., parsare trascrizione in lista attività con assegnatari"
+    },
+    "code-review": {
+      "name": "Code review",
+      "description": "Revisionare codice per bug, problemi di sicurezza e stile",
+      "example": "es., revisionare questa PR, trovare problemi potenziali"
+    },
+    "risk-assessment": {
+      "name": "Valutazione rischi",
+      "description": "Identificare, valutare e prioritizzare rischi potenziali",
+      "example": "es., audit sicurezza, analisi gap conformità"
+    },
+    "research-synthesis": {
+      "name": "Sintesi ricerca",
+      "description": "Combinare più fonti in analisi coerente",
+      "example": "es., revisione letteratura, analisi competitiva, due diligence"
+    },
+    "autonomous-coding": {
+      "name": "Agente di coding autonomo",
+      "description": "Generazione codice multi-step con modifica file e uso strumenti",
+      "example": "es., costruire questa feature end-to-end, refactoring modulo"
+    },
+    "complex-debugging": {
+      "name": "Debugging complesso",
+      "description": "Diagnosticare e correggere bug non ovvi o multi-sistema",
+      "example": "es., race condition, memory leak, fallimento integrazione"
+    },
+    "long-form-document": {
+      "name": "Documento lungo",
+      "description": "Creare documenti lunghi che richiedono revisioni multiple",
+      "example": "es., spec tecnica, whitepaper, sito documentazione"
+    },
+    "multi-criteria-decision": {
+      "name": "Analisi decisionale multi-criterio",
+      "description": "Valutare opzioni attraverso fattori ponderati multipli",
+      "example": "es., selezione fornitore, analisi trade-off architettura"
+    },
+    "chatbot-conversational": {
+      "name": "Chatbot / Agente conversazionale",
+      "description": "Dialogo multi-turno con utenti, conversazioni con stato",
+      "example": "es., bot supporto clienti, assistente FAQ, guida onboarding"
+    },
+    "data-extraction": {
+      "name": "Estrazione / Parsing dati",
+      "description": "Estrarre dati strutturati da documenti non strutturati",
+      "example": "es., estrarre campi da fatture, parsare CV, analisi contratti"
+    },
+    "creative-marketing": {
+      "name": "Testi creativi / Marketing",
+      "description": "Generare contenuti creativi coinvolgenti e allineati al brand",
+      "example": "es., copy pubblicitario, descrizioni prodotto, post social, slogan"
+    }
+  },
+  "wizard": {
+    "questions": {
+      "dataSensitivity": {
+        "title": "Quanto sono sensibili i dati?",
+        "options": {
+          "not-sensitive": "Pubblici o non sensibili",
+          "internal": "Solo interni",
+          "confidential": "Confidenziali / PII / regolamentati"
+        }
+      },
+      "outputStakes": {
+        "title": "Cosa succede se l'output è sbagliato?",
+        "options": {
+          "low": "Inconveniente minore",
+          "medium": "Richiede comunque revisione umana",
+          "high": "Impatto significativo / rischio conformità"
+        }
+      },
+      "volumeFrequency": {
+        "title": "Con quale frequenza verrà eseguito?",
+        "options": {
+          "occasional": "Occasionale / ad-hoc",
+          "regular": "Regolare (giornaliero/settimanale)",
+          "high-volume": "Alto volume / continuo"
+        }
+      },
+      "hardware": {
+        "title": "Quale hardware hai disponibile?",
+        "options": {
+          "laptop-basic": "Laptop (nessuna GPU dedicata)",
+          "laptop-gpu": "Laptop con GPU (8-16GB VRAM)",
+          "workstation": "Workstation (24GB+ VRAM)",
+          "cloud": "Cloud / calcolo on-demand"
+        }
+      },
+      "toolingComfort": {
+        "title": "Quanto sei a tuo agio con gli strumenti locali?",
+        "options": {
+          "cli": "CLI / terminale va bene",
+          "gui": "Preferisco app GUI",
+          "managed": "Voglio soluzioni gestite"
+        }
+      },
+      "costSensitivity": {
+        "title": "Quanto è importante il costo?",
+        "options": {
+          "not-important": "Non è una preoccupazione",
+          "moderate": "Abbastanza importante",
+          "critical": "Vincolo critico"
+        }
+      },
+      "structuredOutput": {
+        "title": "Hai bisogno di output strutturato (JSON, ecc.)?",
+        "options": {
+          "no": "No, testo libero va bene",
+          "nice-to-have": "Sarebbe utile",
+          "required": "Sì, deve essere affidabile"
+        }
+      }
+    }
+  },
+  "verdict": {
+    "calculating": "Calcolo del verdetto...",
+    "modelsUnavailable": "Le raccomandazioni dei modelli sono temporaneamente non disponibili.",
+    "modelsUnavailableHint": "Il verdetto sopra è ancora valido in base ai tuoi input.",
+    "recommendedModels": "Modelli raccomandati",
+    "recommendedModelsManaged": "Modelli raccomandati e opzioni gestite",
+    "modelsDescription": "In base al tuo hardware e preferenze. Ogni scheda mostra il modello, il fornitore e le opzioni di hosting gestito se disponibili.",
+    "needMoreCapability": "Hai bisogno di più capacità?",
+    "needMoreCapabilityDescription": "Questi modelli richiedono più risorse del tuo hardware attuale, ma offrono prestazioni migliori. Considera il deployment cloud o l'upgrade hardware.",
+    "fixHierarchy": {
+      "title": "Se il locale non basta, prova queste soluzioni (ordinate per sforzo):",
+      "fixes": [
+        "Prompting strutturato e iniezione di stato",
+        "Scomporre in step atomici single-shot",
+        "Memoria esterna o layer RAG",
+        "Checkpoint umani tra gli step",
+        "Fine-tune sul pattern dell'attività"
+      ]
+    },
+    "governance": {
+      "title": "Considerazioni di governance",
+      "items": {
+        "dpa": {
+          "title": "Accordo sul trattamento dati",
+          "detail": "Assicurati che il tuo fornitore API abbia un DPA. Esamina le loro politiche di conservazione dati e addestramento."
+        },
+        "complianceReview": {
+          "title": "Revisione conformità richiesta",
+          "detail": "Dati confidenziali + API esterna richiede approvazione legale/conformità. Documenta la giustificazione aziendale."
+        },
+        "dataInHouse": {
+          "title": "I dati restano interni",
+          "detail": "Nessun trasferimento dati esterno. Documenta il tuo deployment locale per scopi di audit."
+        },
+        "humanInLoop": {
+          "title": "Human-in-the-Loop richiesto",
+          "detail": "Gli output ad alto rischio dovrebbero avere revisione umana obbligatoria prima dell'azione. Definisci chi approva e documenta il processo."
+        },
+        "auditTrail": {
+          "title": "Traccia di audit",
+          "detail": "Registra input, output e decisioni del revisore. Conserva per il tuo periodo di conformità."
+        },
+        "budgetControls": {
+          "title": "Controlli budget",
+          "detail": "Imposta avvisi di spesa e limiti di rate. Alto volume + API = i costi possono esplodere inaspettatamente."
+        },
+        "vendorDependency": {
+          "title": "Dipendenza dal fornitore",
+          "detail": "Documenta le opzioni di fallback. I prezzi API, i termini e la disponibilità dei modelli possono cambiare."
+        },
+        "integrationGovernance": {
+          "title": "Governance integrazione",
+          "detail": "Documenta il flusso dati tra componenti locali ed esterni. Assicurati che ogni hop sia conforme."
+        },
+        "aiDisclosure": {
+          "title": "Divulgazione IA agli utenti",
+          "detail": "Gli utenti dovrebbero sapere che stanno interagendo con l'IA. Verifica i requisiti regionali (EU AI Act, ecc.)."
+        },
+        "guardrails": {
+          "title": "Guardrail e filtraggio contenuti",
+          "detail": "Implementa il filtraggio input/output per prevenire contenuti dannosi, prompt injection e risposte fuori tema."
+        },
+        "extractionValidation": {
+          "title": "Validazione accuratezza estrazione",
+          "detail": "Valida i dati estratti rispetto ai documenti sorgente. Gli errori nei dati strutturati possono propagarsi a valle."
+        },
+        "lowOverhead": {
+          "title": "Basso overhead di governance",
+          "detail": "La tua combinazione di bassa sensibilità e bassi rischi significa requisiti di conformità minimi."
+        }
+      }
+    },
+    "nextSteps": {
+      "title": "Prossimi passi"
+    },
+    "modelRegistry": "Registro modelli aggiornato:",
+    "shareResult": "Condividi risultato",
+    "startOver": "Ricomincia",
+    "tooltips": {
+      "local": "Esegui modelli sul tuo hardware. Gratuito dopo la configurazione, completamente privato, ma limitato dalla tua potenza di calcolo.",
+      "frontier": "Usa API cloud come Claude o GPT-4. Migliore capacità, ma costa per token e invia dati esternamente.",
+      "hybrid": "Combina modelli locali con strumenti esterni come RAG, agenti o fine-tuning per capacità migliorate.",
+      "either": "Sia gli approcci locali che frontier funzionerebbero bene per questo caso d'uso. Scegli in base alle preferenze."
+    }
+  },
+  "modelCard": {
+    "managed": "Gestito:",
+    "viewModel": "Vedi modello →"
+  },
+  "footer": {
+    "whatIsThis": "Cos'è questo?"
+  },
+  "offline": {
+    "banner": "Sei offline. Alcune funzionalità potrebbero non essere disponibili."
+  }
+}
