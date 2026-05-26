@@ -8,37 +8,27 @@ const STORAGE_KEY = 'tierpilot-theme';
 
 const THEMES = {
   light: { icon: '☀️', label: 'Light' },
-  dark: { icon: '🌙', label: 'Dark' },
-  system: { icon: '💻', label: 'System' }
+  dark: { icon: '🌙', label: 'Dark' }
 };
 
-let currentTheme = 'system';
-
-/**
- * Get the system's preferred color scheme
- * @returns {string} 'light' or 'dark'
- */
-function getSystemTheme() {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
+let currentTheme = 'dark';
 
 /**
  * Apply theme to document
- * @param {string} theme - 'light', 'dark', or 'system'
+ * @param {string} theme - 'light' or 'dark'
  */
 function applyTheme(theme) {
-  const effectiveTheme = theme === 'system' ? getSystemTheme() : theme;
-  document.documentElement.setAttribute('data-theme', effectiveTheme);
+  document.documentElement.setAttribute('data-theme', theme);
   
   // Update meta theme-color for mobile browsers
   const metaTheme = document.querySelector('meta[name="theme-color"]');
   if (metaTheme) {
-    metaTheme.setAttribute('content', effectiveTheme === 'dark' ? '#0a0a0b' : '#ffffff');
+    metaTheme.setAttribute('content', theme === 'dark' ? '#0a0a0b' : '#ffffff');
   }
 }
 
 /**
- * Initialize theme - load saved preference or detect system
+ * Initialize theme - load saved preference or default to dark
  */
 export function initTheme() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -46,24 +36,17 @@ export function initTheme() {
   if (saved && THEMES[saved]) {
     currentTheme = saved;
   } else {
-    currentTheme = 'system';
+    currentTheme = 'dark';
   }
   
   applyTheme(currentTheme);
-  
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (currentTheme === 'system') {
-      applyTheme('system');
-    }
-  });
   
   return currentTheme;
 }
 
 /**
  * Set the current theme
- * @param {string} theme - 'light', 'dark', or 'system'
+ * @param {string} theme - 'light' or 'dark'
  */
 export function setTheme(theme) {
   if (!THEMES[theme]) {
@@ -80,21 +63,18 @@ export function setTheme(theme) {
 
 /**
  * Get current theme setting
- * @returns {string} Current theme ('light', 'dark', or 'system')
+ * @returns {string} Current theme ('light' or 'dark')
  */
 export function getTheme() {
   return currentTheme;
 }
 
 /**
- * Cycle to next theme (light → dark → system → light)
+ * Toggle between light and dark
  * @returns {string} New theme
  */
-export function cycleTheme() {
-  const order = ['light', 'dark', 'system'];
-  const currentIndex = order.indexOf(currentTheme);
-  const nextIndex = (currentIndex + 1) % order.length;
-  return setTheme(order[nextIndex]);
+export function toggleTheme() {
+  return setTheme(currentTheme === 'dark' ? 'light' : 'dark');
 }
 
 /**
@@ -124,7 +104,7 @@ export function initThemeToggle() {
   if (!toggle) return;
   
   toggle.addEventListener('click', () => {
-    const newTheme = cycleTheme();
+    const newTheme = toggleTheme();
     const icon = toggle.querySelector('.theme-icon');
     if (icon) {
       icon.textContent = THEMES[newTheme].icon;
