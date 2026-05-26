@@ -313,6 +313,18 @@
       "frontier": "Usa API cloud come Claude o GPT-4. Migliore capacità, ma costa per token e invia dati esternamente.",
       "hybrid": "Combina modelli locali con strumenti esterni come RAG, agenti o fine-tuning per capacità migliorate.",
       "either": "Sia gli approcci locali che frontier funzionerebbero bene per questo caso d'uso. Scegli in base alle preferenze."
+    },
+    "gettingStarted": {
+      "title": "Per Iniziare",
+      "download": "Scarica",
+      "signUp": "Registrati",
+      "learnMore": "Scopri di più",
+      "ollamaDesc": "Esegui LLM localmente via riga di comando. Setup semplice, ideale per sviluppatori.",
+      "lmStudioDesc": "App desktop user-friendly per modelli locali. Nessuna programmazione richiesta.",
+      "gpt4allDesc": "App desktop gratuita e privata. Funziona offline, facile da usare.",
+      "openaiDesc": "API leader del settore. Pagamento per token, ideale per app in produzione.",
+      "claudeDesc": "Potente API di Anthropic. Eccellente per compiti di ragionamento complesso.",
+      "langchainDesc": "Framework per creare app che combinano IA locale e cloud."
     }
   },
   "modelCard": {

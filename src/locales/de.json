@@ -313,6 +313,18 @@
       "frontier": "Cloud-APIs wie Claude oder GPT-4 nutzen. Beste Leistung, aber Kosten pro Token und Daten werden extern gesendet.",
       "hybrid": "Lokale Modelle mit externen Tools wie RAG, Agenten oder Feintuning für erweiterte Fähigkeiten kombinieren.",
       "either": "Sowohl lokale als auch Frontier-Ansätze würden für diesen Anwendungsfall gut funktionieren. Wählen Sie nach Präferenz."
+    },
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "download": "Herunterladen",
+      "signUp": "Registrieren",
+      "learnMore": "Mehr erfahren",
+      "ollamaDesc": "LLMs lokal über Kommandozeile ausführen. Einfache Einrichtung, ideal für Entwickler.",
+      "lmStudioDesc": "Benutzerfreundliche Desktop-App für lokale Modelle. Keine Programmierung erforderlich.",
+      "gpt4allDesc": "Kostenlose, datenschutzorientierte Desktop-App. Funktioniert offline, einfach zu bedienen.",
+      "openaiDesc": "Branchenführende API. Bezahlung pro Token, ideal für Produktions-Apps.",
+      "claudeDesc": "Anthropics leistungsstarke API. Hervorragend für komplexe Denkaufgaben.",
+      "langchainDesc": "Framework zum Erstellen von Apps, die lokale und Cloud-KI kombinieren."
     }
   },
   "modelCard": {

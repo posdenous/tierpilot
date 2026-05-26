@@ -288,6 +288,92 @@ function renderNextSteps(verdict, answers) {
 }
 
 /**
+ * Renders getting started resources based on verdict
+ * @param {string} verdict - The verdict type
+ * @param {Object} answers - User's answers
+ * @returns {string} HTML string for getting started section
+ */
+function renderGettingStarted(verdict, answers) {
+  const resources = [];
+  
+  if (verdict === 'local' || verdict === 'either' || verdict === 'hybrid') {
+    // Local setup resources
+    if (answers.toolingComfort === 'cli') {
+      resources.push({
+        icon: '🦙',
+        title: 'Ollama',
+        description: t('verdict.gettingStarted.ollamaDesc'),
+        link: 'https://ollama.com/download',
+        linkText: t('verdict.gettingStarted.download')
+      });
+    } else {
+      resources.push({
+        icon: '🖥️',
+        title: 'LM Studio',
+        description: t('verdict.gettingStarted.lmStudioDesc'),
+        link: 'https://lmstudio.ai/',
+        linkText: t('verdict.gettingStarted.download')
+      });
+      resources.push({
+        icon: '💬',
+        title: 'GPT4All',
+        description: t('verdict.gettingStarted.gpt4allDesc'),
+        link: 'https://gpt4all.io/',
+        linkText: t('verdict.gettingStarted.download')
+      });
+    }
+  }
+  
+  if (verdict === 'frontier' || verdict === 'either' || verdict === 'hybrid') {
+    // Frontier API resources
+    resources.push({
+      icon: '🤖',
+      title: 'OpenAI (GPT-4)',
+      description: t('verdict.gettingStarted.openaiDesc'),
+      link: 'https://platform.openai.com/signup',
+      linkText: t('verdict.gettingStarted.signUp')
+    });
+    resources.push({
+      icon: '🧠',
+      title: 'Anthropic (Claude)',
+      description: t('verdict.gettingStarted.claudeDesc'),
+      link: 'https://console.anthropic.com/',
+      linkText: t('verdict.gettingStarted.signUp')
+    });
+  }
+  
+  if (verdict === 'hybrid') {
+    resources.push({
+      icon: '🔗',
+      title: 'LangChain',
+      description: t('verdict.gettingStarted.langchainDesc'),
+      link: 'https://python.langchain.com/docs/get_started/introduction',
+      linkText: t('verdict.gettingStarted.learnMore')
+    });
+  }
+
+  if (resources.length === 0) return '';
+
+  return `
+    <div class="getting-started">
+      <h2 class="text-lg font-semibold mb-4">${t('verdict.gettingStarted.title')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        ${resources.map(r => `
+          <a href="${r.link}" target="_blank" rel="noopener noreferrer" class="getting-started-card">
+            <div class="getting-started-icon">${r.icon}</div>
+            <div class="getting-started-content">
+              <div class="getting-started-title">${r.title}</div>
+              <div class="getting-started-desc">${r.description}</div>
+            </div>
+            <span class="getting-started-link">${r.linkText} →</span>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+/**
  * Renders a tooltip with verdict explanation
  * @param {string} verdict - The verdict type
  * @returns {string} HTML string for the tooltip
@@ -406,6 +492,9 @@ export function renderVerdict(verdict, models, modelsError, answers) {
       
       <!-- Next steps -->
       ${renderNextSteps(verdict.verdict, answers)}
+      
+      <!-- Getting started resources -->
+      ${renderGettingStarted(verdict.verdict, answers)}
       
       <!-- Metadata -->
       <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border text-sm text-muted">
