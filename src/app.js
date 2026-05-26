@@ -8,7 +8,7 @@ import { renderExplainer } from './components/explainer.js';
 import { renderTaskSelector, initTaskSearch } from './components/taskSelector.js';
 import { renderWizard } from './components/wizard.js';
 import { renderVerdict } from './components/verdict.js';
-import { hasSeenExplainer, setExplainerSeen } from './utils/storage.js';
+import { hasSeenExplainer, setExplainerSeen, saveWizardState, loadWizardState, clearWizardState } from './utils/storage.js';
 import { manageFocus } from './utils/accessibility.js';
 
 // Application state
@@ -135,6 +135,7 @@ function attachEventListeners() {
       state.answers.task = btn.dataset.task;
       state.currentStage = 2;
       state.currentWizardStep = 0;
+      saveWizardState(state);
       render();
     });
   });
@@ -150,12 +151,14 @@ function attachEventListeners() {
       // Auto-advance to next step
       if (state.currentWizardStep < TOTAL_WIZARD_STEPS - 1) {
         state.currentWizardStep++;
+        saveWizardState(state);
         render();
       } else {
         // Calculate verdict and move to results
         import('./engine/decision.js').then(({ calculateVerdict }) => {
           state.verdict = calculateVerdict(state.answers);
           state.currentStage = 3;
+          clearWizardState(); // Clear saved progress on completion
           render();
         });
       }
@@ -174,6 +177,7 @@ function attachEventListeners() {
         state.currentStage = 2;
         state.currentWizardStep = TOTAL_WIZARD_STEPS - 1;
       }
+      saveWizardState(state);
       render();
     });
   }
@@ -195,6 +199,7 @@ function attachEventListeners() {
         structuredOutput: null
       };
       state.verdict = null;
+      clearWizardState();
       render();
     });
   }
@@ -276,8 +281,15 @@ export async function initApp() {
   const loadedFromURL = await loadFromSharedURL();
   
   if (!loadedFromURL) {
-    // Determine starting stage
-    if (hasSeenExplainer()) {
+    // Check for saved wizard progress
+    const savedState = loadWizardState();
+    
+    if (savedState && savedState.currentStage >= 1) {
+      // Restore saved progress
+      state.currentStage = savedState.currentStage;
+      state.currentWizardStep = savedState.currentWizardStep || 0;
+      state.answers = { ...state.answers, ...savedState.answers };
+    } else if (hasSeenExplainer()) {
       state.currentStage = 1;
     } else {
       state.currentStage = 0;
