@@ -38,7 +38,7 @@ const TOTAL_WIZARD_STEPS = 7;
  */
 async function fetchModels() {
   try {
-    const response = await fetch('/models.json');
+    const response = await fetch(import.meta.env.BASE_URL + 'models.json');
     if (!response.ok) throw new Error('Failed to fetch models');
     const data = await response.json();
     state.models = data.models;
