@@ -143,6 +143,7 @@
     }
   },
   "wizard": {
+    "back": "← Back",
     "questions": {
       "dataSensitivity": {
         "title": "How sensitive is the data?",
@@ -202,6 +203,9 @@
         }
       }
     }
+  },
+  "common": {
+    "unknown": "Unknown"
   },
   "verdict": {
     "calculating": "Calculating verdict...",

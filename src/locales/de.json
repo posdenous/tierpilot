@@ -143,6 +143,7 @@
     }
   },
   "wizard": {
+    "back": "← Zurück",
     "questions": {
       "dataSensitivity": {
         "title": "Wie sensibel sind die Daten?",
@@ -276,7 +277,33 @@
       }
     },
     "nextSteps": {
-      "title": "Nächste Schritte"
+      "title": "Nächste Schritte",
+      "steps": {
+        "chooseModel": "Wählen Sie ein Modell aus den Empfehlungen oben",
+        "installOllama": "Installieren Sie Ollama oder llama.cpp auf Ihrem Zielrechner",
+        "downloadLMStudio": "Laden Sie LM Studio oder GPT4All für eine visuelle Oberfläche herunter",
+        "setupManaged": "Richten Sie verwaltete Inferenz über Together AI oder Replicate ein",
+        "runPilot": "Führen Sie einen Pilottest mit repräsentativen Testfällen durch",
+        "documentDeployment": "Dokumentieren Sie die Bereitstellung für Ihr Team",
+        "selectProvider": "Wählen Sie einen API-Anbieter aus den Empfehlungen",
+        "reviewTerms": "Überprüfen Sie die AGB und DPA des Anbieters",
+        "getApproval": "Holen Sie die Genehmigung von Compliance/Rechtsabteilung für die Datenverarbeitung ein",
+        "setupApiKeys": "Richten Sie API-Schlüssel mit entsprechenden Zugriffskontrollen ein",
+        "implementRateLimiting": "Implementieren Sie Ratenbegrenzung und Kostenüberwachung",
+        "designArchitecture": "Entwerfen Sie die Architektur: welche Komponenten lokal vs. extern",
+        "documentDataFlow": "Dokumentieren Sie den Datenfluss und wo sensible Daten verarbeitet werden",
+        "setupLocalFirst": "Richten Sie zuerst das lokale Modell ein, dann fügen Sie die Orchestrierungsschicht hinzu",
+        "testPipeline": "Testen Sie die gesamte Pipeline mit repräsentativen Daten",
+        "tryLocalFirst": "Versuchen Sie zuerst lokal — geringere Bindung, einfacher später zu wechseln",
+        "upgradeIfNeeded": "Wenn lokal die Qualitätsanforderungen nicht erfüllt, wechseln Sie zur Frontier-API",
+        "documentRationale": "Dokumentieren Sie Ihre Entscheidungsbegründung für zukünftige Referenz",
+        "defineHumanReview": "Definieren Sie den menschlichen Überprüfungsworkflow vor dem Produktiveinsatz",
+        "implementStateManagement": "Implementieren Sie Konversationszustandsverwaltung und Kontextfensterhandling",
+        "addContentFiltering": "Fügen Sie Inhaltsfilterung und Schutzmaßnahmen vor der Benutzerbereitstellung hinzu",
+        "createValidationRules": "Erstellen Sie Validierungsregeln für extrahierte Felder",
+        "buildSampleSet": "Erstellen Sie einen Beispieldatensatz zur Messung der Extraktionsgenauigkeit vor der Skalierung",
+        "defineBrandVoice": "Definieren Sie Markentonrichtlinien und Überprüfungskriterien"
+      }
     },
     "modelRegistry": "Modellregister aktualisiert:",
     "shareResult": "Ergebnis teilen",
@@ -291,6 +318,9 @@
   "modelCard": {
     "managed": "Managed:",
     "viewModel": "Modell ansehen →"
+  },
+  "common": {
+    "unknown": "Unbekannt"
   },
   "footer": {
     "whatIsThis": "Was ist das?"

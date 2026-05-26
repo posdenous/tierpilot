@@ -143,6 +143,7 @@
     }
   },
   "wizard": {
+    "back": "← Retour",
     "questions": {
       "dataSensitivity": {
         "title": "Quelle est la sensibilité des données ?",
@@ -276,7 +277,33 @@
       }
     },
     "nextSteps": {
-      "title": "Prochaines étapes"
+      "title": "Prochaines étapes",
+      "steps": {
+        "chooseModel": "Choisissez un modèle parmi les recommandations ci-dessus",
+        "installOllama": "Installez Ollama ou llama.cpp sur votre machine cible",
+        "downloadLMStudio": "Téléchargez LM Studio ou GPT4All pour une interface visuelle",
+        "setupManaged": "Configurez l'inférence gérée via Together AI ou Replicate",
+        "runPilot": "Exécutez un pilote avec des cas de test représentatifs",
+        "documentDeployment": "Documentez le déploiement pour votre équipe",
+        "selectProvider": "Sélectionnez un fournisseur d'API parmi les recommandations",
+        "reviewTerms": "Examinez les conditions de service et le DPA du fournisseur",
+        "getApproval": "Obtenez l'approbation conformité/juridique pour le traitement des données",
+        "setupApiKeys": "Configurez les clés API avec des contrôles d'accès appropriés",
+        "implementRateLimiting": "Implémentez la limitation de débit et la surveillance des coûts",
+        "designArchitecture": "Concevez l'architecture : quels composants sont locaux vs externes",
+        "documentDataFlow": "Documentez le flux de données et où les données sensibles sont traitées",
+        "setupLocalFirst": "Configurez d'abord le modèle local, puis ajoutez la couche d'orchestration",
+        "testPipeline": "Testez le pipeline complet avec des données représentatives",
+        "tryLocalFirst": "Essayez d'abord en local — engagement moindre, plus facile de changer ensuite",
+        "upgradeIfNeeded": "Si le local ne répond pas aux exigences de qualité, passez à l'API frontier",
+        "documentRationale": "Documentez votre justification de décision pour référence future",
+        "defineHumanReview": "Définissez le workflow de révision humaine avant l'utilisation en production",
+        "implementStateManagement": "Implémentez la gestion d'état de conversation et la gestion de fenêtre de contexte",
+        "addContentFiltering": "Ajoutez le filtrage de contenu et les garde-fous avant le déploiement utilisateur",
+        "createValidationRules": "Créez des règles de validation pour les champs extraits",
+        "buildSampleSet": "Construisez un ensemble d'échantillons pour mesurer la précision d'extraction avant la mise à l'échelle",
+        "defineBrandVoice": "Définissez les directives de voix de marque et les critères de révision"
+      }
     },
     "modelRegistry": "Registre des modèles mis à jour :",
     "shareResult": "Partager le résultat",
@@ -291,6 +318,9 @@
   "modelCard": {
     "managed": "Géré :",
     "viewModel": "Voir le modèle →"
+  },
+  "common": {
+    "unknown": "Inconnu"
   },
   "footer": {
     "whatIsThis": "Qu'est-ce que c'est ?"

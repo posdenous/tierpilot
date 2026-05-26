@@ -143,6 +143,7 @@
     }
   },
   "wizard": {
+    "back": "← Atrás",
     "questions": {
       "dataSensitivity": {
         "title": "¿Qué tan sensibles son los datos?",
@@ -276,7 +277,33 @@
       }
     },
     "nextSteps": {
-      "title": "Próximos pasos"
+      "title": "Próximos pasos",
+      "steps": {
+        "chooseModel": "Elige un modelo de las recomendaciones anteriores",
+        "installOllama": "Instala Ollama o llama.cpp en tu máquina objetivo",
+        "downloadLMStudio": "Descarga LM Studio o GPT4All para una interfaz visual",
+        "setupManaged": "Configura inferencia gestionada vía Together AI o Replicate",
+        "runPilot": "Ejecuta un piloto con casos de prueba representativos",
+        "documentDeployment": "Documenta el despliegue para tu equipo",
+        "selectProvider": "Selecciona un proveedor de API de las recomendaciones",
+        "reviewTerms": "Revisa los términos de servicio y DPA del proveedor",
+        "getApproval": "Obtén aprobación de cumplimiento/legal para el procesamiento de datos",
+        "setupApiKeys": "Configura claves API con controles de acceso apropiados",
+        "implementRateLimiting": "Implementa limitación de tasa y monitoreo de costos",
+        "designArchitecture": "Diseña la arquitectura: qué componentes son locales vs externos",
+        "documentDataFlow": "Documenta el flujo de datos y dónde se procesan datos sensibles",
+        "setupLocalFirst": "Configura primero el modelo local, luego añade la capa de orquestación",
+        "testPipeline": "Prueba el pipeline completo con datos representativos",
+        "tryLocalFirst": "Prueba local primero — menor compromiso, más fácil cambiar después",
+        "upgradeIfNeeded": "Si local no cumple el estándar de calidad, actualiza a API frontier",
+        "documentRationale": "Documenta tu justificación de decisión para referencia futura",
+        "defineHumanReview": "Define el flujo de revisión humana antes del uso en producción",
+        "implementStateManagement": "Implementa gestión de estado de conversación y manejo de ventana de contexto",
+        "addContentFiltering": "Añade filtrado de contenido y barreras antes del despliegue al usuario",
+        "createValidationRules": "Crea reglas de validación para campos extraídos",
+        "buildSampleSet": "Construye un conjunto de muestra para medir precisión de extracción antes de escalar",
+        "defineBrandVoice": "Define directrices de voz de marca y criterios de revisión"
+      }
     },
     "modelRegistry": "Registro de modelos actualizado:",
     "shareResult": "Compartir resultado",
@@ -291,6 +318,9 @@
   "modelCard": {
     "managed": "Gestionado:",
     "viewModel": "Ver modelo →"
+  },
+  "common": {
+    "unknown": "Desconocido"
   },
   "footer": {
     "whatIsThis": "¿Qué es esto?"

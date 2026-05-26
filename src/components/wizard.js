@@ -107,9 +107,9 @@ export function renderWizard(stepIndex, answers, progress) {
         <button 
           id="back-btn" 
           class="btn-secondary"
-          aria-label="Back"
+          aria-label="${t('wizard.back')}"
         >
-          ← Back
+          ${t('wizard.back')}
         </button>
       </div>
     </div>

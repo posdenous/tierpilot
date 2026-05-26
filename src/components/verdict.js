@@ -12,7 +12,7 @@ import { t, getLanguage } from '../utils/i18n.js';
  * @returns {string} Formatted date string
  */
 function getLastUpdatedDate(models) {
-  if (!models || models.length === 0) return 'Unknown';
+  if (!models || models.length === 0) return t('common.unknown');
   
   const dates = models
     .map(m => m.lastVerified)
@@ -20,7 +20,7 @@ function getLastUpdatedDate(models) {
     .sort()
     .reverse();
   
-  if (dates.length === 0) return 'Unknown';
+  if (dates.length === 0) return t('common.unknown');
   
   const date = new Date(dates[0]);
   const lang = getLanguage();
@@ -215,60 +215,61 @@ function renderGovernanceGuidance(verdict, answers) {
  */
 function renderNextSteps(verdict, answers) {
   const steps = [];
+  const stepsT = t('verdict.nextSteps.steps');
   
   if (verdict === 'local') {
-    steps.push('Choose a model from recommendations above');
+    steps.push(stepsT.chooseModel || 'Choose a model from recommendations above');
     if (answers.toolingComfort === 'cli') {
-      steps.push('Install Ollama or llama.cpp on your target machine');
+      steps.push(stepsT.installOllama || 'Install Ollama or llama.cpp on your target machine');
     } else if (answers.toolingComfort === 'gui') {
-      steps.push('Download LM Studio or GPT4All for a visual interface');
+      steps.push(stepsT.downloadLMStudio || 'Download LM Studio or GPT4All for a visual interface');
     } else {
-      steps.push('Set up managed inference via Together AI or Replicate');
+      steps.push(stepsT.setupManaged || 'Set up managed inference via Together AI or Replicate');
     }
-    steps.push('Run a pilot with representative test cases');
-    steps.push('Document the deployment for your team');
+    steps.push(stepsT.runPilot || 'Run a pilot with representative test cases');
+    steps.push(stepsT.documentDeployment || 'Document the deployment for your team');
   }
   
   if (verdict === 'frontier') {
-    steps.push('Select an API provider from recommendations');
-    steps.push('Review provider\'s terms of service and DPA');
+    steps.push(stepsT.selectProvider || 'Select an API provider from recommendations');
+    steps.push(stepsT.reviewTerms || 'Review provider\'s terms of service and DPA');
     if (answers.dataSensitivity !== 'not-sensitive') {
-      steps.push('Get compliance/legal approval for data processing');
+      steps.push(stepsT.getApproval || 'Get compliance/legal approval for data processing');
     }
-    steps.push('Set up API keys with appropriate access controls');
-    steps.push('Implement rate limiting and cost monitoring');
+    steps.push(stepsT.setupApiKeys || 'Set up API keys with appropriate access controls');
+    steps.push(stepsT.implementRateLimiting || 'Implement rate limiting and cost monitoring');
   }
   
   if (verdict === 'hybrid') {
-    steps.push('Design the architecture: which components are local vs external');
-    steps.push('Document data flow and where sensitive data is processed');
-    steps.push('Set up local model first, then add orchestration layer');
-    steps.push('Test the full pipeline with representative data');
+    steps.push(stepsT.designArchitecture || 'Design the architecture: which components are local vs external');
+    steps.push(stepsT.documentDataFlow || 'Document data flow and where sensitive data is processed');
+    steps.push(stepsT.setupLocalFirst || 'Set up local model first, then add orchestration layer');
+    steps.push(stepsT.testPipeline || 'Test the full pipeline with representative data');
   }
   
   if (verdict === 'either') {
-    steps.push('Try local first — lower commitment, easier to switch later');
-    steps.push('If local doesn\'t meet quality bar, upgrade to frontier API');
-    steps.push('Document your decision rationale for future reference');
+    steps.push(stepsT.tryLocalFirst || 'Try local first — lower commitment, easier to switch later');
+    steps.push(stepsT.upgradeIfNeeded || 'If local doesn\'t meet quality bar, upgrade to frontier API');
+    steps.push(stepsT.documentRationale || 'Document your decision rationale for future reference');
   }
   
   if (answers.outputStakes === 'high') {
-    steps.push('Define human review workflow before production use');
+    steps.push(stepsT.defineHumanReview || 'Define human review workflow before production use');
   }
   
   // Task-specific next steps
   if (answers.task === 'chatbot-conversational') {
-    steps.push('Implement conversation state management and context window handling');
-    steps.push('Add content filtering and guardrails before user-facing deployment');
+    steps.push(stepsT.implementStateManagement || 'Implement conversation state management and context window handling');
+    steps.push(stepsT.addContentFiltering || 'Add content filtering and guardrails before user-facing deployment');
   }
   
   if (answers.task === 'data-extraction') {
-    steps.push('Create validation rules for extracted fields');
-    steps.push('Build a sample set to measure extraction accuracy before scaling');
+    steps.push(stepsT.createValidationRules || 'Create validation rules for extracted fields');
+    steps.push(stepsT.buildSampleSet || 'Build a sample set to measure extraction accuracy before scaling');
   }
   
   if (answers.task === 'creative-marketing') {
-    steps.push('Define brand voice guidelines and review criteria');
+    steps.push(stepsT.defineBrandVoice || 'Define brand voice guidelines and review criteria');
   }
 
   return `
