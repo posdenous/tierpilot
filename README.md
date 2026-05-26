@@ -1,161 +1,201 @@
-# TierPilot
+<div align="center">
 
-Interactive decision tool that helps technical users (developers, AI leads, product managers) decide whether to use a local LLM, a frontier API model, or a hybrid approach for a given task.
+# ⚡ TierPilot
 
-![TierPilot Screenshot](https://via.placeholder.com/800x400?text=TierPilot+Screenshot)
+### Local vs Frontier LLM Decision Tool
 
-## Quick Start
+**Stop guessing. Start shipping.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://www.javascript.com/)
+[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF.svg)](https://vitejs.dev/)
+
+[**Try it Live →**](https://tierpilot.netlify.app) · [Report Bug](https://github.com/yourusername/tierpilot/issues) · [Request Feature](https://github.com/yourusername/tierpilot/issues)
+
+</div>
+
+---
+
+## 🤔 The Problem
+
+You want to add AI to your project. But should you:
+- Run **Llama locally** for privacy and zero cost?
+- Use **Claude/GPT-4 APIs** for maximum capability?
+- Build a **hybrid** with local + cloud?
+
+The answer depends on your data sensitivity, hardware, budget, task complexity, and a dozen other factors. **TierPilot helps you decide in 2 minutes.**
+
+---
+
+## ✨ Features
+
+- 🎯 **21 Task Categories** — From simple summarization to autonomous coding agents
+- 🔒 **Privacy-First Analysis** — Weighs data sensitivity and compliance requirements
+- 💻 **Hardware-Aware** — Recommends models that actually run on your machine
+- 🌍 **5 Languages** — English, German, Spanish, French, Italian
+- 🌓 **Light/Dark Mode** — Easy on the eyes
+- 📱 **Mobile Responsive** — Works on any device
+- ⚡ **Instant Results** — No signup, no tracking, runs entirely in your browser
+
+---
+
+## 🚀 Quick Start
 
 ```bash
+# Clone the repo
+git clone https://github.com/yourusername/tierpilot.git
+cd tierpilot
+
 # Install dependencies
 npm install
 
 # Run development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## How It Works
+---
 
-TierPilot guides users through a wizard-style flow:
+## 📖 How It Works
 
-1. **Task Selection** — Pick from 18 task categories (summarisation, code review, autonomous coding, etc.)
-2. **Context Questions** — Answer 7 questions about data sensitivity, output stakes, hardware, cost, etc.
-3. **Verdict** — Get a recommendation (LOCAL, FRONTIER, HYBRID, or EITHER) with model suggestions
+TierPilot guides you through a simple wizard:
 
-## Decision Logic
+| Step | What Happens |
+|------|--------------|
+| **1. Pick a Task** | Choose from 21 categories (summarization, code review, chatbots, etc.) |
+| **2. Answer 7 Questions** | Data sensitivity, output stakes, hardware, budget, etc. |
+| **3. Get Your Verdict** | LOCAL, FRONTIER, HYBRID, or EITHER — with specific model recommendations |
 
-The decision engine (`src/engine/decision.js`) uses a weighted scoring system. Each user input adds or subtracts points from three tiers:
+---
 
-| Factor | What it measures | Key insight |
-|--------|------------------|-------------|
-| **Task complexity** | Simple → Complex | Complex tasks (autonomous agents, research synthesis) need frontier capability |
-| **Data sensitivity** | Public → Confidential | Confidential data strongly favors local to avoid compliance risk |
-| **Output stakes** | Low → High | High-stakes outputs warrant more reliable models |
-| **Volume/frequency** | Occasional → High volume | API costs add up at scale; local has zero marginal cost |
-| **Hardware** | Basic laptop → Cloud | Hardware sets a floor on what local models are possible |
-| **Tooling comfort** | CLI → Managed only | Practical friction matters — capability is useless if you can't set it up |
-| **Cost sensitivity** | High → Low | Budget constraints are real |
-| **Structured output** | Yes → No | Smaller models struggle with reliable JSON |
+## 🧠 Decision Logic
 
-The tier with the highest score wins. If scores are within 2 points, the verdict is "EITHER".
+The engine uses **weighted scoring** — each answer adds/subtracts points across three tiers:
 
-### Why Weighted Scoring?
+| Factor | Local Boost | Frontier Boost |
+|--------|-------------|----------------|
+| Confidential data | +5 | -3 |
+| High output stakes | +1 | +2 |
+| Complex task | -2 | +3 |
+| High volume | +3 | -2 |
+| Cost sensitive | +3 | -2 |
+| Basic hardware | -2 | +2 |
 
-Hard rules don't capture real-world trade-offs. A user with confidential data but basic hardware faces a genuine dilemma — the scoring system surfaces this tension rather than hiding it.
+**Highest score wins.** If scores are within 2 points → "EITHER" verdict.
 
-## Updating models.json
+> 💡 Hard rules don't capture real trade-offs. A user with confidential data but basic hardware faces a genuine dilemma — the scoring system surfaces this tension.
 
-The model registry lives at `public/models.json`. To add or update models:
+---
+
+## 🛠️ Tech Stack
+
+| Tech | Purpose |
+|------|---------|
+| **Vite 6** | Build tool & dev server |
+| **TailwindCSS 4** | Styling with CSS variables |
+| **Vanilla JS** | No framework, ES modules |
+| **Netlify** | Hosting & deployment |
+
+---
+
+## 📁 Project Structure
+
+```
+tierpilot/
+├── public/
+│   └── models.json           # Model registry (runtime fetch)
+├── src/
+│   ├── engine/decision.js    # Scoring logic
+│   ├── components/           # UI components
+│   ├── locales/              # i18n translations (en, de, es, fr, it)
+│   ├── utils/                # Helpers (i18n, theme, share)
+│   └── styles/main.css       # TailwindCSS + themes
+├── index.html
+└── vite.config.js
+```
+
+---
+
+## 🚢 Deployment
+
+### Netlify (Recommended)
+
+```bash
+# Just push to GitHub — Netlify auto-deploys from netlify.toml
+git push origin main
+```
+
+### Manual / Other Platforms
+
+```bash
+npm run build
+# Deploy the dist/ folder anywhere (Vercel, Cloudflare Pages, etc.)
+```
+
+---
+
+## 🔧 Customization
+
+### Add/Update Models
+
+Edit `public/models.json`:
 
 ```json
 {
-  "name": "Model Name",
-  "provider": "Organisation",
-  "tier": "local" | "frontier" | "hybrid",
-  "paramSize": "7B",
-  "minHardware": "16GB RAM, M-series Mac",
-  "strengths": ["Strength 1", "Strength 2"],
-  "bestFor": ["Task type 1", "Task type 2"],
-  "managedAlternative": "Together AI, Replicate" | null,
+  "name": "Llama 3.2",
+  "provider": "Meta",
+  "tier": "local",
+  "paramSize": "3B",
+  "strengths": ["Fast", "Low memory"],
   "link": "https://...",
   "lastVerified": "2026-05-20"
 }
 ```
 
-The app fetches this file at runtime, so updates don't require rebuilding.
+No rebuild needed — models load at runtime.
 
-## Adding Task Categories
+### Add Languages
 
-Task categories are defined in `src/components/taskSelector.js`:
+1. Create `src/locales/xx.json` (copy from `en.json`)
+2. Add to `src/utils/i18n.js` imports
+3. Add to `SUPPORTED_LANGUAGES` array
 
-```javascript
-{
-  id: 'task-id',           // URL-safe identifier
-  name: 'Task Name',       // Display name
-  description: 'What this task covers',
-  complexity: 'simple' | 'moderate' | 'complex'
-}
-```
+---
 
-Complexity affects the base scoring:
-- **simple** — Favors local models (+3 local, +1 frontier)
-- **moderate** — Neutral (+2 each)
-- **complex** — Favors frontier (+0 local, +3 frontier)
+## ♿ Accessibility
 
-## Project Structure
+- ✅ Keyboard navigable
+- ✅ ARIA labels on all controls
+- ✅ Focus management between steps
+- ✅ WCAG AA color contrast
+- ✅ Screen reader friendly
 
-```
-tierpilot/
-├── public/
-│   └── models.json          # Model registry (fetched at runtime)
-├── src/
-│   ├── engine/
-│   │   └── decision.js      # Decision logic with inline reasoning
-│   ├── components/
-│   │   ├── explainer.js     # Stage 0 - First-load explainer
-│   │   ├── taskSelector.js  # Stage 1 - Task category grid
-│   │   ├── wizard.js        # Stage 2 - Context questions
-│   │   └── verdict.js       # Stage 3 - Result card
-│   ├── utils/
-│   │   ├── storage.js       # localStorage helpers
-│   │   ├── accessibility.js # Focus management, ARIA
-│   │   └── share.js         # Clipboard share
-│   ├── styles/
-│   │   └── main.css         # TailwindCSS 4 + CSS variables
-│   ├── app.js               # App orchestration
-│   └── main.js              # Entry point
-├── index.html
-├── vite.config.js
-├── netlify.toml
-└── DECISIONS.md             # Architectural decisions
-```
+---
 
-## Deployment
+## 🤝 Contributing
 
-### Netlify (Recommended)
+PRs welcome! Please:
 
-1. Push to GitHub
-2. Connect repo to Netlify
-3. Netlify auto-detects settings from `netlify.toml`
+1. Fork the repo
+2. Create a feature branch (`git checkout -b feature/amazing`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push (`git push origin feature/amazing`)
+5. Open a Pull Request
 
-Or deploy manually:
+---
 
-```bash
-npm run build
-# Upload dist/ to Netlify
-```
+## 📄 License
 
-### Other Platforms
+MIT © 2026
 
-The `dist/` folder after `npm run build` is static HTML/CSS/JS. Deploy anywhere that serves static files.
+---
 
-## Tech Stack
+<div align="center">
 
-- **Vite 6** — Build tool and dev server
-- **TailwindCSS 4** — Utility-first CSS with `@theme` design tokens
-- **Vanilla JS** — No framework, ES modules
-- **@netlify/vite-plugin** — Netlify integration
+**Built with ⚡ by developers, for developers**
 
-## Accessibility
+[⬆ Back to top](#-tierpilot)
 
-- All interactive elements are keyboard navigable
-- Focus is managed explicitly between wizard steps
-- ARIA labels on all buttons and inputs
-- Color contrast meets WCAG AA
-- Screen reader announcements for dynamic content
-
-## Browser Support
-
-Modern browsers (Chrome, Firefox, Safari, Edge). No IE11 support.
-
-## License
-
-MIT
+</div>
