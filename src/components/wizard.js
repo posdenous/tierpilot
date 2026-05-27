@@ -48,7 +48,8 @@ function getWizardQuestions() {
       title: questionT?.title || q.key,
       options: q.optionValues.map(val => ({
         value: val,
-        label: questionT?.options?.[val] || val
+        label: questionT?.options?.[val] || val,
+        hint: questionT?.hints?.[val] || null
       }))
     };
   });
@@ -76,9 +77,10 @@ export function renderWizard(stepIndex, answers, progress) {
       data-question="${question.key}"
       data-option="${option.value}"
       aria-selected="${currentAnswer === option.value}"
-      aria-label="${option.label}"
+      aria-label="${option.label}${option.hint ? ': ' + option.hint : ''}"
     >
       <div class="font-medium">${option.label}</div>
+      ${option.hint ? `<div class="option-hint">${option.hint}</div>` : ''}
     </button>
   `).join('');
 

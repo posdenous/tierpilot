@@ -151,6 +151,11 @@
           "not-sensitive": "Públicos o no sensibles",
           "internal": "Solo interno",
           "confidential": "Confidencial / PII / regulado"
+        },
+        "hints": {
+          "not-sensitive": "Información pública, código abierto o conocimiento general sin preocupaciones de privacidad",
+          "internal": "Datos de empresa que no compartirías públicamente, pero nada secreto ni legalmente protegido",
+          "confidential": "Datos personales (nombres, emails, salud), registros financieros o contenido legalmente regulado"
         }
       },
       "outputStakes": {
@@ -159,6 +164,11 @@
           "low": "Inconveniente menor",
           "medium": "Requiere revisión humana de todos modos",
           "high": "Impacto significativo / riesgo de cumplimiento"
+        },
+        "hints": {
+          "low": "Un error es fácil de detectar y corregir — no es gran cosa",
+          "medium": "Una persona revisará el resultado antes de usarlo",
+          "high": "Los errores podrían causar pérdidas financieras, problemas legales o daños"
         }
       },
       "volumeFrequency": {
@@ -167,6 +177,11 @@
           "occasional": "Ocasional / ad-hoc",
           "regular": "Regular (diario/semanal)",
           "high-volume": "Alto volumen / continuo"
+        },
+        "hints": {
+          "occasional": "Unas pocas veces por semana o menos — cuando lo necesites",
+          "regular": "Se ejecuta según un horario, como cada día o semana",
+          "high-volume": "Cientos o miles de solicitudes, o ejecutándose sin parar"
         }
       },
       "hardware": {
@@ -176,6 +191,12 @@
           "laptop-gpu": "Laptop con GPU (8-16GB VRAM)",
           "workstation": "Workstation (24GB+ VRAM)",
           "cloud": "Cloud / cómputo bajo demanda"
+        },
+        "hints": {
+          "laptop-basic": "Un laptop normal — MacBook, Dell, HP, etc. — sin tarjeta gráfica de juegos",
+          "laptop-gpu": "Un laptop para gaming o creativo con tarjeta gráfica NVIDIA o AMD",
+          "workstation": "Un PC de escritorio potente con tarjeta gráfica de alta gama (ej. NVIDIA RTX 3090+)",
+          "cloud": "Alquilarás potencia de cómputo de AWS, Google Cloud, Azure o similares"
         }
       },
       "toolingComfort": {
@@ -184,6 +205,11 @@
           "cli": "CLI / terminal está bien",
           "gui": "Prefiero apps con GUI",
           "managed": "Quiero soluciones gestionadas"
+        },
+        "hints": {
+          "cli": "Te sientes cómodo abriendo una terminal y escribiendo comandos para instalar software",
+          "gui": "Prefieres apps con interfaz visual — hacer clic, no escribir comandos",
+          "managed": "Solo quieres registrarte y empezar a usarlo — sin instalación ni configuración"
         }
       },
       "costSensitivity": {
@@ -192,14 +218,24 @@
           "not-important": "No es una preocupación",
           "moderate": "Algo importante",
           "critical": "Restricción crítica"
+        },
+        "hints": {
+          "not-important": "El presupuesto no es un factor — pagarás por la mejor herramienta",
+          "moderate": "Preferirías opciones más baratas pero pagarás por calidad",
+          "critical": "Necesitas una solución gratuita o de muy bajo costo"
         }
       },
       "structuredOutput": {
-        "title": "¿Necesitas salida estructurada (JSON, etc.)?",
+        "title": "¿Necesitas salida estructurada?",
         "options": {
           "no": "No, texto libre está bien",
           "nice-to-have": "Sería bueno tenerlo",
           "required": "Sí, debe ser confiable"
+        },
+        "hints": {
+          "no": "Texto legible simple es todo lo que necesitas — como un resumen o respuesta",
+          "nice-to-have": "Sería útil, pero puedes trabajar sin ello si es necesario",
+          "required": "Tu app o flujo de trabajo necesita la salida en un formato específico, como JSON"
         }
       }
     }

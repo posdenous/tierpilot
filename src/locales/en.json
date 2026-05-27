@@ -151,6 +151,11 @@
           "not-sensitive": "Public or non-sensitive",
           "internal": "Internal only",
           "confidential": "Confidential / PII / regulated"
+        },
+        "hints": {
+          "not-sensitive": "Publicly available info, open-source code, or general knowledge with no privacy concerns",
+          "internal": "Company data you wouldn't share publicly, but nothing secret or legally protected",
+          "confidential": "Personal details (names, emails, health data), financial records, or anything legally regulated"
         }
       },
       "outputStakes": {
@@ -159,6 +164,11 @@
           "low": "Minor inconvenience",
           "medium": "Needs human review anyway",
           "high": "Significant impact / compliance risk"
+        },
+        "hints": {
+          "low": "A wrong answer is easy to spot and fix — no big deal",
+          "medium": "A person will check the result before it's acted on",
+          "high": "Errors could cause financial loss, legal issues, or harm to people"
         }
       },
       "volumeFrequency": {
@@ -167,6 +177,11 @@
           "occasional": "Occasional / ad-hoc",
           "regular": "Regular (daily/weekly)",
           "high-volume": "High volume / continuous"
+        },
+        "hints": {
+          "occasional": "A few times a week or less — whenever you need it",
+          "regular": "Runs on a schedule, like every day or every week",
+          "high-volume": "Hundreds or thousands of requests, or running non-stop"
         }
       },
       "hardware": {
@@ -176,6 +191,12 @@
           "laptop-gpu": "Laptop with GPU (8-16GB VRAM)",
           "workstation": "Workstation (24GB+ VRAM)",
           "cloud": "Cloud / on-demand compute"
+        },
+        "hints": {
+          "laptop-basic": "A standard everyday laptop — MacBook, Dell, HP, etc. — without a gaming card",
+          "laptop-gpu": "A gaming or creative laptop with an NVIDIA or AMD graphics card",
+          "workstation": "A powerful desktop PC with a high-end graphics card (e.g. NVIDIA RTX 3090+)",
+          "cloud": "You'll rent computing power from AWS, Google Cloud, Azure, or similar"
         }
       },
       "toolingComfort": {
@@ -184,6 +205,11 @@
           "cli": "CLI / terminal is fine",
           "gui": "Prefer GUI apps",
           "managed": "Want managed solutions"
+        },
+        "hints": {
+          "cli": "You're comfortable opening a terminal and typing commands to install and run software",
+          "gui": "You prefer apps with a visual interface — clicking buttons, not typing commands",
+          "managed": "You just want to sign up and start using it — no installation or setup"
         }
       },
       "costSensitivity": {
@@ -192,14 +218,24 @@
           "not-important": "Not a concern",
           "moderate": "Somewhat important",
           "critical": "Critical constraint"
+        },
+        "hints": {
+          "not-important": "Budget isn't a factor — you'll pay for the best tool",
+          "moderate": "You'd prefer cheaper options but will spend money for quality",
+          "critical": "You need a free or very low-cost solution"
         }
       },
       "structuredOutput": {
-        "title": "Do you need structured output (JSON, etc.)?",
+        "title": "Do you need structured output?",
         "options": {
           "no": "No, free-form text is fine",
           "nice-to-have": "Nice to have",
           "required": "Yes, must be reliable"
+        },
+        "hints": {
+          "no": "Plain readable text is all you need — like a summary or answer",
+          "nice-to-have": "It would be useful, but you can work around it if needed",
+          "required": "Your app or workflow needs the output in a specific format, like a list or JSON data"
         }
       }
     }

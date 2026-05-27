@@ -151,6 +151,11 @@
           "not-sensitive": "Publiques ou non sensibles",
           "internal": "Internes uniquement",
           "confidential": "Confidentielles / PII / réglementées"
+        },
+        "hints": {
+          "not-sensitive": "Informations publiques, code open-source ou connaissances générales sans problèmes de confidentialité",
+          "internal": "Données d'entreprise que vous ne partageriez pas publiquement, mais rien de secret ou légalement protégé",
+          "confidential": "Données personnelles (noms, emails, santé), dossiers financiers ou contenu légalement réglementé"
         }
       },
       "outputStakes": {
@@ -159,6 +164,11 @@
           "low": "Inconvénient mineur",
           "medium": "Nécessite une révision humaine de toute façon",
           "high": "Impact significatif / risque de conformité"
+        },
+        "hints": {
+          "low": "Une mauvaise réponse est facile à repérer et corriger — pas de problème",
+          "medium": "Une personne vérifiera le résultat avant qu'il soit utilisé",
+          "high": "Les erreurs pourraient causer des pertes financières, des problèmes légaux ou des dommages"
         }
       },
       "volumeFrequency": {
@@ -167,6 +177,11 @@
           "occasional": "Occasionnel / ad-hoc",
           "regular": "Régulier (quotidien/hebdomadaire)",
           "high-volume": "Volume élevé / continu"
+        },
+        "hints": {
+          "occasional": "Quelques fois par semaine ou moins — quand vous en avez besoin",
+          "regular": "S'exécute selon un calendrier, comme chaque jour ou chaque semaine",
+          "high-volume": "Des centaines ou milliers de requêtes, ou fonctionnant en continu"
         }
       },
       "hardware": {
@@ -176,6 +191,12 @@
           "laptop-gpu": "Laptop avec GPU (8-16GB VRAM)",
           "workstation": "Station de travail (24GB+ VRAM)",
           "cloud": "Cloud / calcul à la demande"
+        },
+        "hints": {
+          "laptop-basic": "Un laptop ordinaire — MacBook, Dell, HP, etc. — sans carte graphique gaming",
+          "laptop-gpu": "Un laptop gaming ou créatif avec une carte graphique NVIDIA ou AMD",
+          "workstation": "Un PC de bureau puissant avec une carte graphique haut de gamme (ex. NVIDIA RTX 3090+)",
+          "cloud": "Vous louerez de la puissance de calcul chez AWS, Google Cloud, Azure ou similaire"
         }
       },
       "toolingComfort": {
@@ -184,6 +205,11 @@
           "cli": "CLI / terminal, c'est OK",
           "gui": "Je préfère les apps GUI",
           "managed": "Je veux des solutions gérées"
+        },
+        "hints": {
+          "cli": "Vous êtes à l'aise pour ouvrir un terminal et taper des commandes pour installer des logiciels",
+          "gui": "Vous préférez les apps avec une interface visuelle — cliquer, pas taper des commandes",
+          "managed": "Vous voulez juste vous inscrire et commencer — pas d'installation ni de configuration"
         }
       },
       "costSensitivity": {
@@ -192,14 +218,24 @@
           "not-important": "Pas une préoccupation",
           "moderate": "Assez important",
           "critical": "Contrainte critique"
+        },
+        "hints": {
+          "not-important": "Le budget n'est pas un facteur — vous paierez pour le meilleur outil",
+          "moderate": "Vous préféreriez des options moins chères mais paierez pour la qualité",
+          "critical": "Vous avez besoin d'une solution gratuite ou très bon marché"
         }
       },
       "structuredOutput": {
-        "title": "Avez-vous besoin d'une sortie structurée (JSON, etc.) ?",
+        "title": "Avez-vous besoin d'une sortie structurée ?",
         "options": {
           "no": "Non, le texte libre convient",
           "nice-to-have": "Ce serait bien",
           "required": "Oui, doit être fiable"
+        },
+        "hints": {
+          "no": "Du texte lisible simple est tout ce dont vous avez besoin — comme un résumé ou une réponse",
+          "nice-to-have": "Ce serait utile, mais vous pouvez vous en passer si nécessaire",
+          "required": "Votre app ou workflow nécessite la sortie dans un format spécifique, comme JSON"
         }
       }
     }

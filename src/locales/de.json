@@ -151,6 +151,11 @@
           "not-sensitive": "Öffentlich oder nicht sensibel",
           "internal": "Nur intern",
           "confidential": "Vertraulich / personenbezogen / reguliert"
+        },
+        "hints": {
+          "not-sensitive": "Öffentlich verfügbare Infos, Open-Source-Code oder allgemeines Wissen ohne Datenschutzbedenken",
+          "internal": "Unternehmensdaten, die Sie nicht öffentlich teilen würden, aber nichts Geheimes oder Rechtlich Geschütztes",
+          "confidential": "Persönliche Daten (Namen, E-Mails, Gesundheitsdaten), Finanzdaten oder gesetzlich regulierte Inhalte"
         }
       },
       "outputStakes": {
@@ -159,6 +164,11 @@
           "low": "Geringfügige Unannehmlichkeit",
           "medium": "Erfordert ohnehin menschliche Prüfung",
           "high": "Erhebliche Auswirkung / Compliance-Risiko"
+        },
+        "hints": {
+          "low": "Eine falsche Antwort ist leicht zu erkennen und zu korrigieren — kein großes Problem",
+          "medium": "Eine Person prüft das Ergebnis, bevor es verwendet wird",
+          "high": "Fehler könnten finanzielle Verluste, rechtliche Probleme oder Schäden verursachen"
         }
       },
       "volumeFrequency": {
@@ -167,6 +177,11 @@
           "occasional": "Gelegentlich / ad-hoc",
           "regular": "Regelmäßig (täglich/wöchentlich)",
           "high-volume": "Hohes Volumen / kontinuierlich"
+        },
+        "hints": {
+          "occasional": "Ein paarmal pro Woche oder weniger — wann immer Sie es brauchen",
+          "regular": "Läuft nach einem Zeitplan, z. B. täglich oder wöchentlich",
+          "high-volume": "Hunderte oder Tausende von Anfragen oder ununterbrochen laufend"
         }
       },
       "hardware": {
@@ -176,6 +191,12 @@
           "laptop-gpu": "Laptop mit GPU (8-16GB VRAM)",
           "workstation": "Workstation (24GB+ VRAM)",
           "cloud": "Cloud / On-Demand-Compute"
+        },
+        "hints": {
+          "laptop-basic": "Ein normaler Alltagslaptop — MacBook, Dell, HP usw. — ohne Gaming-Grafikkarte",
+          "laptop-gpu": "Ein Gaming- oder Kreativ-Laptop mit einer NVIDIA- oder AMD-Grafikkarte",
+          "workstation": "Ein leistungsstarker Desktop-PC mit einer High-End-Grafikkarte (z. B. NVIDIA RTX 3090+)",
+          "cloud": "Sie mieten Rechenleistung von AWS, Google Cloud, Azure oder ähnlichen Diensten"
         }
       },
       "toolingComfort": {
@@ -184,6 +205,11 @@
           "cli": "CLI / Terminal ist in Ordnung",
           "gui": "Bevorzuge GUI-Apps",
           "managed": "Möchte verwaltete Lösungen"
+        },
+        "hints": {
+          "cli": "Sie können problemlos ein Terminal öffnen und Befehle eingeben, um Software zu installieren",
+          "gui": "Sie bevorzugen Apps mit visueller Oberfläche — Klicken statt Tippen",
+          "managed": "Sie möchten sich einfach anmelden und loslegen — keine Installation nötig"
         }
       },
       "costSensitivity": {
@@ -192,14 +218,24 @@
           "not-important": "Kein Thema",
           "moderate": "Einigermaßen wichtig",
           "critical": "Kritische Einschränkung"
+        },
+        "hints": {
+          "not-important": "Budget spielt keine Rolle — Sie zahlen für das beste Tool",
+          "moderate": "Sie bevorzugen günstigere Optionen, zahlen aber für Qualität",
+          "critical": "Sie benötigen eine kostenlose oder sehr kostengünstige Lösung"
         }
       },
       "structuredOutput": {
-        "title": "Benötigen Sie strukturierte Ausgabe (JSON, etc.)?",
+        "title": "Benötigen Sie strukturierte Ausgabe?",
         "options": {
           "no": "Nein, Freitext ist in Ordnung",
           "nice-to-have": "Wäre schön",
           "required": "Ja, muss zuverlässig sein"
+        },
+        "hints": {
+          "no": "Einfacher lesbarer Text ist alles, was Sie brauchen — wie eine Zusammenfassung oder Antwort",
+          "nice-to-have": "Wäre nützlich, aber Sie kommen auch ohne aus",
+          "required": "Ihre App oder Ihr Workflow benötigt die Ausgabe in einem bestimmten Format, z. B. JSON"
         }
       }
     }
